@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-10T19:57:07.903Z",
+  "updatedAt": "2026-08-10T20:51:22.412Z",
   "count": 74,
   "events": [
     {
@@ -383,7 +383,7 @@
       "country": "CNY",
       "date": "2026-08-13T04:03:00-04:00",
       "impact": "Low",
-      "forecast": "350B",
+      "forecast": "50B",
       "previous": "1610B"
     },
     {
@@ -391,7 +391,7 @@
       "country": "EUR",
       "date": "2026-08-13T05:00:00-04:00",
       "impact": "Low",
-      "forecast": "0.0%",
+      "forecast": "-0.1%",
       "previous": "-0.2%"
     },
     {
@@ -423,7 +423,7 @@
       "country": "USD",
       "date": "2026-08-13T08:30:00-04:00",
       "impact": "Medium",
-      "forecast": "202K",
+      "forecast": "203K",
       "previous": "199K"
     },
     {
@@ -575,7 +575,7 @@
       "country": "USD",
       "date": "2026-08-14T10:00:00-04:00",
       "impact": "Medium",
-      "forecast": "54.4",
+      "forecast": "54.7",
       "previous": "54.4"
     },
     {

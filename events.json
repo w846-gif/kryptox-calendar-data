@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-11T12:09:58.681Z",
+  "updatedAt": "2026-08-11T13:54:35.711Z",
   "count": 74,
   "events": [
     {
@@ -133,18 +133,18 @@
     {
       "title": "ADP Weekly Employment Change",
       "country": "USD",
-      "date": "2026-08-11T08:15:00-04:00",
+      "date": "2026-08-11T08:14:00-04:00",
       "impact": "Low",
       "forecast": "",
-      "previous": ""
+      "previous": "15.0K"
     },
     {
       "title": "ADP Weekly Employment Change",
       "country": "USD",
-      "date": "2026-08-11T08:16:00-04:00",
+      "date": "2026-08-11T08:15:00-04:00",
       "impact": "Low",
       "forecast": "",
-      "previous": "15.0K"
+      "previous": "11.0K"
     },
     {
       "title": "Existing Home Sales",

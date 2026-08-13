@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-13T05:57:51.820Z",
+  "updatedAt": "2026-08-13T07:45:48.221Z",
   "count": 74,
   "events": [
     {
@@ -355,14 +355,6 @@
       "previous": "0.7%"
     },
     {
-      "title": "Foreign Direct Investment ytd/y",
-      "country": "CNY",
-      "date": "2026-08-13T02:02:00-04:00",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "-5.0%"
-    },
-    {
       "title": "PPI m/m",
       "country": "CHF",
       "date": "2026-08-13T02:30:00-04:00",
@@ -505,6 +497,14 @@
       "impact": "Low",
       "forecast": "-0.2%",
       "previous": "-0.7%"
+    },
+    {
+      "title": "Foreign Direct Investment ytd/y",
+      "country": "CNY",
+      "date": "2026-08-14T02:02:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "-5.0%"
     },
     {
       "title": "French Final CPI m/m",

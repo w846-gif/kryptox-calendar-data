@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-13T14:37:31.407Z",
+  "updatedAt": "2026-08-13T15:59:45.381Z",
   "count": 74,
   "events": [
     {
@@ -421,7 +421,7 @@
     {
       "title": "Mortgage Delinquencies",
       "country": "USD",
-      "date": "2026-08-13T10:15:00-04:00",
+      "date": "2026-08-13T10:29:00-04:00",
       "impact": "Low",
       "forecast": "",
       "previous": "4.44%"

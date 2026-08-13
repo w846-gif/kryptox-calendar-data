@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-13T19:36:41.636Z",
-  "count": 74,
+  "updatedAt": "2026-08-13T20:44:00.805Z",
+  "count": 75,
   "events": [
     {
       "title": "Bank Lending y/y",
@@ -449,6 +449,14 @@
       "impact": "Low",
       "forecast": "",
       "previous": "5.06|2.4"
+    },
+    {
+      "title": "FOMC Member Goolsbee Speaks",
+      "country": "USD",
+      "date": "2026-08-13T18:00:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": ""
     },
     {
       "title": "BusinessNZ Manufacturing Index",

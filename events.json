@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-14T10:32:56.945Z",
-  "count": 73,
+  "updatedAt": "2026-08-14T11:43:57.099Z",
+  "count": 74,
   "events": [
     {
       "title": "Bank Lending y/y",
@@ -585,6 +585,14 @@
       "impact": "Low",
       "forecast": "0.2%",
       "previous": "0.3%"
+    },
+    {
+      "title": "President Trump Speaks",
+      "country": "USD",
+      "date": "2026-08-14T15:00:00-04:00",
+      "impact": "Medium",
+      "forecast": "",
+      "previous": ""
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-14T05:56:56.658Z",
-  "count": 74,
+  "updatedAt": "2026-08-14T07:40:49.548Z",
+  "count": 73,
   "events": [
     {
       "title": "Bank Lending y/y",
@@ -481,14 +481,6 @@
       "impact": "Low",
       "forecast": "-0.2%",
       "previous": "-0.7%"
-    },
-    {
-      "title": "Foreign Direct Investment ytd/y",
-      "country": "CNY",
-      "date": "2026-08-14T02:02:00-04:00",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "-5.0%"
     },
     {
       "title": "French Final CPI m/m",

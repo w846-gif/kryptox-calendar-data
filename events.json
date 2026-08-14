@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-13T23:41:48.437Z",
-  "count": 75,
+  "updatedAt": "2026-08-14T02:02:02.929Z",
+  "count": 74,
   "events": [
     {
       "title": "Bank Lending y/y",
@@ -473,14 +473,6 @@
       "impact": "Low",
       "forecast": "",
       "previous": "-2.4%"
-    },
-    {
-      "title": "RBA Gov Bullock Speaks",
-      "country": "AUD",
-      "date": "2026-08-13T19:30:00-04:00",
-      "impact": "Medium",
-      "forecast": "",
-      "previous": ""
     },
     {
       "title": "German WPI m/m",

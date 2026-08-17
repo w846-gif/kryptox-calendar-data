@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-17T18:40:29.558Z",
+  "updatedAt": "2026-08-17T19:29:00.924Z",
   "count": 96,
   "events": [
     {
@@ -231,7 +231,7 @@
       "country": "EUR",
       "date": "2026-08-18T05:00:00-04:00",
       "impact": "Low",
-      "forecast": "30.0",
+      "forecast": "30.1",
       "previous": "26.3"
     },
     {

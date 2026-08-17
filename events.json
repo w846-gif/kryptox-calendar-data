@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-17T03:50:57.756Z",
+  "updatedAt": "2026-08-17T04:42:40.214Z",
   "count": 96,
   "events": [
     {
@@ -57,14 +57,6 @@
       "impact": "Low",
       "forecast": "-0.9%",
       "previous": "1.1%"
-    },
-    {
-      "title": "Foreign Direct Investment ytd/y",
-      "country": "CNY",
-      "date": "2026-08-17T02:02:00-04:00",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "-5.0%"
     },
     {
       "title": "Fixed Asset Investment ytd/y",
@@ -217,6 +209,14 @@
       "impact": "Low",
       "forecast": "4.8%",
       "previous": "4.9%"
+    },
+    {
+      "title": "Foreign Direct Investment ytd/y",
+      "country": "CNY",
+      "date": "2026-08-18T02:02:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "-5.0%"
     },
     {
       "title": "ZEW Economic Sentiment",

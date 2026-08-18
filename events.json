@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T20:25:06.868Z",
+  "updatedAt": "2026-08-18T20:50:50.996Z",
   "count": 97,
   "events": [
     {
@@ -455,7 +455,7 @@
       "country": "USD",
       "date": "2026-08-19T10:30:00-04:00",
       "impact": "Low",
-      "forecast": "",
+      "forecast": "0.2M",
       "previous": "17.4M"
     },
     {
@@ -591,7 +591,7 @@
       "country": "USD",
       "date": "2026-08-20T10:30:00-04:00",
       "impact": "Low",
-      "forecast": "",
+      "forecast": "15B",
       "previous": "36B"
     },
     {

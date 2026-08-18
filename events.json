@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T15:32:30.050Z",
+  "updatedAt": "2026-08-18T16:32:18.716Z",
   "count": 96,
   "events": [
     {
@@ -301,7 +301,7 @@
     {
       "title": "GDT Price Index",
       "country": "NZD",
-      "date": "2026-08-18T10:51:00-04:00",
+      "date": "2026-08-18T11:31:00-04:00",
       "impact": "Low",
       "forecast": "",
       "previous": "0.1%"

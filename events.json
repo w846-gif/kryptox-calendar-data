@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-18T05:30:28.251Z",
+  "updatedAt": "2026-08-18T06:44:16.357Z",
   "count": 96,
   "events": [
     {
@@ -209,14 +209,6 @@
       "impact": "Low",
       "forecast": "4.8%",
       "previous": "4.9%"
-    },
-    {
-      "title": "Foreign Direct Investment ytd/y",
-      "country": "CNY",
-      "date": "2026-08-18T02:02:00-04:00",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "-5.0%"
     },
     {
       "title": "ZEW Economic Sentiment",
@@ -665,6 +657,14 @@
       "impact": "Low",
       "forecast": "0.0B",
       "previous": "16.0B"
+    },
+    {
+      "title": "Foreign Direct Investment ytd/y",
+      "country": "CNY",
+      "date": "2026-08-21T02:02:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "-5.0%"
     },
     {
       "title": "French Flash Manufacturing PMI",

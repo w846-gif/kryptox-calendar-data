@@ -7,7 +7,7 @@
 // landet NICHT im Repo. Die erzeugte .pkpass enthält keine Geheimnisse
 // (nur öffentliche Kontaktdaten) und darf gehostet/committet werden.
 import { execFileSync } from 'node:child_process';
-import { writeFileSync, mkdtempSync } from 'node:fs';
+import { writeFileSync, mkdtempSync, existsSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -16,6 +16,12 @@ import { config, buildVCard } from './config.mjs';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = join(HERE, 'webartelier.pkpass');
 const API = 'https://api.walletwallet.dev/api/passes';
+
+// PNG als data-URI einlesen (für Logo/Thumbnail). null, wenn nicht vorhanden.
+function dataURI(rel) {
+  const p = join(HERE, rel);
+  return existsSync(p) ? 'data:image/png;base64,' + readFileSync(p).toString('base64') : null;
+}
 
 const key = process.env.WALLETWALLET_API_KEY;
 if (!key) {
@@ -26,11 +32,19 @@ if (!key) {
 const c = config.contact;
 const services = (c.services ?? []).join(' · ');
 
+// Marken-Bilder: Kompass-Logo (oben links) + Erde als Thumbnail (oben rechts),
+// genau wie auf der Visitenkarte. Reines Schwarz als Hintergrund.
+const logo = dataURI('assets/logo@3x.png');
+const globe = dataURI('assets/globe-thumb.png');
+
 const body = {
   organizationName: config.apple.organizationName || c.company,
   logoText: config.design.logoText || c.company,
   description: `${c.company} – Visitenkarte`,
   colorPreset: 'dark',
+  color: '#000000',
+  ...(logo ? { logoURL: logo } : {}),
+  ...(globe ? { thumbnailURL: globe } : {}),
   sharingProhibited: false,
   primaryFields: [{ label: '', value: c.tagline || c.company }],
   secondaryFields: [

@@ -25,6 +25,8 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      HAS_FIREBASE: ${{ secrets.FIREBASE_SERVICE_ACCOUNT != '' && secrets.FIREBASE_PROJECT_ID != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -43,7 +45,12 @@ jobs:
           PASS_TEAM_ID: ${{ secrets.PASS_TEAM_ID }}
           PASS_ORG_NAME: ${{ secrets.PASS_ORG_NAME }}
 
+      - name: Hinweis, falls Firebase-Secrets fehlen
+        if: env.HAS_FIREBASE != 'true'
+        run: echo "::warning::FIREBASE_SERVICE_ACCOUNT / FIREBASE_PROJECT_ID nicht gesetzt – Deploy übersprungen. Seite wurde nur gebaut. Secrets setzen und Workflow erneut ausführen."
+
       - name: Auf Firebase Hosting deployen
+        if: env.HAS_FIREBASE == 'true'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}

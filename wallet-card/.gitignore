@@ -7,4 +7,6 @@ certs/
 
 # Build-Artefakte
 .build/
+public/
+webartelier.pkpass
 webatelier.pkpass

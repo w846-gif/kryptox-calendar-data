@@ -1,0 +1,52 @@
+name: Deploy Wallet Card (Firebase)
+
+# Baut die Web-Visitenkarte (und – falls die Zertifikat-Secrets gesetzt sind –
+# die signierte webartelier.pkpass) und veröffentlicht sie auf Firebase Hosting.
+#
+# Benötigte Repository-Secrets (Settings → Secrets and variables → Actions):
+#   FIREBASE_SERVICE_ACCOUNT  – JSON eines Firebase-Service-Accounts (Deploy-Rechte)
+#   FIREBASE_PROJECT_ID       – deine Firebase-Projekt-ID
+#   (optional, für die Wallet-Karte:)
+#   PASS_SIGNER_CERT / PASS_SIGNER_KEY / PASS_WWDR  – Base64 der PEM-Dateien
+#   PASS_KEY_PASSPHRASE / PASS_TEAM_ID / PASS_TYPE_ID / PASS_ORG_NAME
+on:
+  push:
+    branches: [claude/virtual-business-card-apple-wallet-1wfpjv]
+    paths:
+      - 'wallet-card/**'
+      - 'firebase.json'
+      - '.firebaserc'
+      - '.github/workflows/deploy-firebase.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Seite bauen (Bilder + optional signierte .pkpass)
+        run: node wallet-card/build.mjs
+        env:
+          PASS_SIGNER_CERT: ${{ secrets.PASS_SIGNER_CERT }}
+          PASS_SIGNER_KEY: ${{ secrets.PASS_SIGNER_KEY }}
+          PASS_WWDR: ${{ secrets.PASS_WWDR }}
+          PASS_KEY_PASSPHRASE: ${{ secrets.PASS_KEY_PASSPHRASE }}
+          PASS_TYPE_ID: ${{ secrets.PASS_TYPE_ID }}
+          PASS_TEAM_ID: ${{ secrets.PASS_TEAM_ID }}
+          PASS_ORG_NAME: ${{ secrets.PASS_ORG_NAME }}
+
+      - name: Auf Firebase Hosting deployen
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: ${{ secrets.FIREBASE_PROJECT_ID }}
+          channelId: live

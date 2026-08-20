@@ -20,7 +20,7 @@ import { config, buildVCard } from './config.mjs';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ASSETS = join(HERE, 'assets');
 const BUILD = join(HERE, '.build');
-const OUT_PKPASS = join(HERE, 'webatelier.pkpass');
+const OUT_PKPASS = join(HERE, 'webartelier.pkpass');
 
 const REQUIRED_IMAGES = ['icon.png', 'icon@2x.png', 'icon@3x.png'];
 
@@ -32,12 +32,18 @@ function die(msg) {
 // ---- 1. pass.json -----------------------------------------------------------
 function buildPassJson() {
   const { contact: c, design: d, apple: a } = config;
+  const services = (c.services ?? []).join(' · ');
+
+  // Primär: Ansprechpartner falls vorhanden, sonst die Schlagzeile.
+  const primaryValue = c.fullName || c.tagline || c.company;
 
   const backFields = [
+    c.fullName && { key: 'company_back', label: 'Atelier', value: c.company },
     c.website && { key: 'website', label: 'Website', value: c.website },
     c.email && { key: 'email', label: 'E-Mail', value: c.email },
     c.phone && { key: 'phone_back', label: 'Telefon', value: c.phone },
     c.address && { key: 'address', label: 'Adresse', value: c.address },
+    services && { key: 'services', label: 'Leistungen', value: services },
     c.about && { key: 'about', label: 'Über', value: c.about },
     ...(c.socials ?? []).map((s, i) => ({
       key: `social_${i}`,
@@ -59,14 +65,13 @@ function buildPassJson() {
     labelColor: d.label,
     sharingProhibited: false,
     generic: {
-      primaryFields: [{ key: 'name', label: '', value: c.fullName }],
+      primaryFields: [{ key: 'headline', label: '', value: primaryValue }],
       secondaryFields: [
-        c.title && { key: 'title', label: 'ROLLE', value: c.title },
-        c.company && { key: 'company', label: 'ATELIER', value: c.company },
-      ].filter(Boolean),
-      auxiliaryFields: [
         c.phone && { key: 'phone', label: 'TELEFON', value: c.phone },
         c.email && { key: 'email_aux', label: 'E-MAIL', value: c.email },
+      ].filter(Boolean),
+      auxiliaryFields: [
+        services && { key: 'services_aux', label: 'LEISTUNGEN', value: services },
       ].filter(Boolean),
       backFields,
     },

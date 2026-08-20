@@ -1,8 +1,7 @@
 // Erzeugt alle von Apple Wallet benötigten PNGs (Icon in 3 Auflösungen +
 // Logo in 3 Auflösungen) aus den Marken-Farben in config.mjs — komplett ohne
-// externe Bibliotheken. Das Monogramm ist auf den Buchstaben "W" optimiert;
-// setzt du config.design.monogram auf etwas anderes, hinterlege am besten
-// eigene Logo-PNGs im Ordner assets/.
+// externe Bibliotheken. Das Markenzeichen ist der Kompass-Stern (Webartelier
+// Nord): ein weißer Vierstrahl-Stern mit dünnem Ring auf schwarzem Grund.
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,40 +12,53 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const OUT = join(HERE, 'assets');
 
 const bg = color(config.design.background);
-const accent = color(config.design.accent);
+const mark = color(config.design.accent); // Sternfarbe (weiß)
 
-// Zeichnet den Buchstaben "W" als vier dicke Striche in eine Bounding-Box.
-function drawMonogramW(cv, x, y, w, h, stroke, col) {
-  const pts = [
-    [x, y],
-    [x + w * 0.28, y + h],
-    [x + w * 0.5, y + h * 0.38],
-    [x + w * 0.72, y + h],
-    [x + w, y],
+// Eckpunkte eines Vierstrahl-Sterns (Nordstern/Kompass) um (cx, cy).
+function starPolygon(cx, cy, R, rInner) {
+  const axes = [
+    [0, -1],
+    [1, 0],
+    [0, 1],
+    [-1, 0],
   ];
-  for (let i = 0; i < pts.length - 1; i++) {
-    cv.thickLine(pts[i][0], pts[i][1], pts[i + 1][0], pts[i + 1][1], stroke, col);
+  const pts = [];
+  for (let i = 0; i < 4; i++) {
+    const a = axes[i];
+    const b = axes[(i + 1) % 4];
+    pts.push([cx + a[0] * R, cy + a[1] * R]); // Spitze
+    const dx = a[0] + b[0];
+    const dy = a[1] + b[1];
+    const len = Math.hypot(dx, dy) || 1;
+    pts.push([cx + (dx / len) * rInner, cy + (dy / len) * rInner]); // innere Kerbe
   }
+  return pts;
 }
 
-// Icon: quadratisch, gefüllter Marken-Hintergrund + Monogramm (Wallet maskiert
-// die Ecken selbst, daher keine vorgerundete Kachel).
+function drawMark(cv, size, { ring }) {
+  const cx = size / 2;
+  const cy = size / 2;
+  if (ring) {
+    const r = size * 0.44;
+    cv.strokeCircle(cx, cy, r, Math.max(1.4, size * 0.028), mark);
+  }
+  const R = size * (ring ? 0.34 : 0.46);
+  cv.fillPolygon(starPolygon(cx, cy, R, R * 0.24), mark);
+}
+
+// Icon: schwarzer Grund + Kompass-Stern mit Ring (Wallet maskiert die Ecken).
 function makeIcon(size) {
   const cv = new Canvas(size, size);
   cv.fill(bg);
-  const pad = size * 0.24;
-  const box = size - pad * 2;
-  drawMonogramW(cv, pad, pad + box * 0.08, box, box * 0.84, Math.max(2, size * 0.09), accent);
+  drawMark(cv, size, { ring: true });
   return cv.toPNG();
 }
 
-// Logo: transparenter Hintergrund, nur das Monogramm (der Schriftzug
-// "Webatelier" kommt über logoText aus pass.json daneben).
+// Logo: transparenter Grund, nur der Kompass-Stern mit Ring (der Schriftzug
+// "Webartelier Nord" kommt über logoText aus pass.json daneben).
 function makeLogo(height) {
-  const w = Math.round(height * 1.05);
-  const cv = new Canvas(w, height);
-  const pad = height * 0.14;
-  drawMonogramW(cv, pad, pad, w - pad * 2, height - pad * 2, Math.max(2, height * 0.14), accent);
+  const cv = new Canvas(height, height);
+  drawMark(cv, height, { ring: true });
   return cv.toPNG();
 }
 

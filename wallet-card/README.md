@@ -1,20 +1,24 @@
-# Webatelier – Visitenkarte für Apple Wallet
+# Webartelier Nord – Visitenkarte für Apple Wallet
 
 Eine native **Apple-Wallet-Karte** (`.pkpass`) als digitale Visitenkarte für
-Webatelier, plus eine **Landing-Page** (`index.html`) mit „Zu Apple Wallet
-hinzufügen"-Button und vCard-Download.
+Webartelier Nord, plus eine **Landing-Page** (`index.html`) im Kartendesign mit
+„Zu Apple Wallet hinzufügen"-Button und vCard-Download – deployt auf
+**Firebase Hosting**.
 
 Alles läuft mit **Node.js** und **OpenSSL** – keine npm-Abhängigkeiten.
 
 ```
-wallet-card/
-├── config.mjs        ← die EINZIGE Datei, die du bearbeiten musst
-├── make-images.mjs   Erzeugt die Wallet-Bilder (Icon + Logo)
-├── make-pass.mjs     Baut & signiert webatelier.pkpass
-├── index.html        Web-Visitenkarte (Wallet-Button + vCard)
-├── lib/png.mjs       Kleiner PNG-Encoder (ohne Abhängigkeiten)
-├── assets/           Generierte PNGs
-└── certs/            Deine Apple-Zertifikate (NICHT im Repo, per .gitignore)
+├── firebase.json     Firebase-Hosting-Konfiguration (Repo-Root)
+├── .firebaserc       Firebase-Projekt-ID (Repo-Root)
+└── wallet-card/
+    ├── config.mjs        ← die EINZIGE Datei, die du bearbeiten musst
+    ├── make-images.mjs   Erzeugt die Wallet-Bilder (Kompass-Stern-Logo)
+    ├── make-pass.mjs     Baut & signiert webartelier.pkpass
+    ├── build.mjs         Stellt die Seite in public/ zusammen (für Firebase)
+    ├── index.html        Web-Visitenkarte (Wallet-Button + vCard)
+    ├── lib/png.mjs       Kleiner PNG-Encoder (ohne Abhängigkeiten)
+    ├── assets/           Generierte PNGs
+    └── certs/            Deine Apple-Zertifikate (NICHT im Repo, per .gitignore)
 ```
 
 ---
@@ -34,7 +38,7 @@ node make-images.mjs
 node make-pass.mjs
 ```
 
-Ergebnis: **`webatelier.pkpass`** – auf iPhone/Mac öffnen → landet in Apple Wallet.
+Ergebnis: **`webartelier.pkpass`** – auf iPhone/Mac öffnen → landet in Apple Wallet.
 
 ---
 
@@ -135,32 +139,46 @@ scannt, kann dich direkt als Kontakt speichern.
 
 ---
 
-## 4. Online bereitstellen (GitHub Pages – automatisch)
+## 4. Online bereitstellen (Firebase Hosting)
 
-Im Repo liegt der Workflow **`.github/workflows/deploy-wallet-card.yml`**. Er
-läuft bei jedem Push auf den Wallet-Card-Branch (oder manuell über
-*Actions → Deploy Wallet Card → Run workflow*) und veröffentlicht die Seite auf
-**GitHub Pages**:
+Die Seite wird auf **Firebase Hosting** ausgeliefert. `firebase.json` setzt für
+`*.pkpass` automatisch den korrekten MIME-Typ `application/vnd.apple.pkpass` –
+den Apple Wallet zwingend braucht.
 
+### Variante A — manuell vom eigenen Rechner (schnell)
+
+```bash
+# einmalig:
+npm install -g firebase-tools
+firebase login
+
+# Projekt-ID in .firebaserc eintragen (statt DEIN_FIREBASE_PROJEKT_ID),
+# oder einmalig verknüpfen:
+firebase use --add
+
+# Seite bauen und deployen:
+node wallet-card/build.mjs        # erzeugt wallet-card/public/
+firebase deploy --only hosting
 ```
-https://<user>.github.io/<repo>/
-```
 
-Der Workflow:
-1. erzeugt die Bilder (`make-images.mjs`),
-2. baut die **signierte `.pkpass`** – *aber nur, wenn die Zertifikat-Secrets
-   gesetzt sind* (siehe unten); sonst geht die Seite ohne `.pkpass` live und der
-   Wallet-Button zeigt „in Vorbereitung",
-3. deployt `index.html`, `assets/` und (falls vorhanden) `webatelier.pkpass`.
+Danach ist die Karte live unter `https://<projekt-id>.web.app`.
 
-GitHub Pages liefert `.pkpass` automatisch mit dem korrekten MIME-Typ
-`application/vnd.apple.pkpass` aus – kein manuelles Setup nötig.
+### Variante B — automatisch per GitHub Actions
 
-### Zertifikate als GitHub-Secrets hinterlegen
+Der Workflow **`.github/workflows/deploy-firebase.yml`** läuft bei jedem Push auf
+den Wallet-Card-Branch (oder manuell über *Actions → Run workflow*), baut die
+Seite und deployt sie auf Firebase. Dafür zwei Secrets setzen unter
+**Repo → Settings → Secrets and variables → Actions**:
 
-Damit die CI die Karte signieren kann, ohne den privaten Schlüssel ins Repo zu
-legen, kodierst du die drei PEM-Dateien als Base64 und trägst sie unter
-**Repo → Settings → Secrets and variables → Actions** ein:
+| Secret                     | Inhalt                                                             |
+| -------------------------- | ----------------------------------------------------------------- |
+| `FIREBASE_SERVICE_ACCOUNT` | JSON eines Firebase-Service-Accounts (Firebase Console → Projekt­einstellungen → Dienstkonten → *Neuen privaten Schlüssel generieren*) |
+| `FIREBASE_PROJECT_ID`      | deine Firebase-Projekt-ID                                         |
+
+### Zertifikate als GitHub-Secrets (für die Wallet-Karte)
+
+Damit die CI die Karte **signieren** kann, ohne den privaten Schlüssel ins Repo
+zu legen, die drei PEM-Dateien als Base64 hinterlegen:
 
 ```bash
 cd wallet-card
@@ -177,15 +195,12 @@ base64 -w0 certs/wwdr.pem         # -> Secret PASS_WWDR
 | `PASS_WWDR`          | Base64 von `wwdr.pem`                               |
 | `PASS_KEY_PASSPHRASE`| Passphrase des Schlüssels (nur falls gesetzt)       |
 | `PASS_TEAM_ID`       | dein 10-stelliger Team-Identifier                   |
-| `PASS_TYPE_ID`       | z. B. `pass.com.webatelier.card`                    |
-| `PASS_ORG_NAME`      | z. B. `Webatelier`                                  |
+| `PASS_TYPE_ID`       | z. B. `pass.com.webartelier.card`                   |
+| `PASS_ORG_NAME`      | z. B. `Webartelier Nord`                            |
 
-Nach dem Setzen der Secrets einmal den Workflow neu ausführen – der
-Wallet-Button wird automatisch scharf.
-
-> **Eigener Server statt Pages?** `index.html`, `assets/` und `webatelier.pkpass`
-> zusammen hochladen und den MIME-Typ setzen (z. B. `.htaccess`:
-> `AddType application/vnd.apple.pkpass .pkpass`).
+Ohne diese Zertifikate geht die Seite trotzdem live – der Wallet-Button zeigt
+dann „in Vorbereitung" und wird automatisch scharf, sobald die Secrets gesetzt
+sind und der Deploy erneut läuft.
 
 ---
 

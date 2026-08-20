@@ -116,6 +116,56 @@ export class Canvas {
     }
   }
 
+  // Ring (Kreis-Umriss) – funktioniert auch auf transparentem Grund.
+  strokeCircle(cx, cy, radius, thickness, color) {
+    const outer = radius + thickness / 2;
+    const inner = radius - thickness / 2;
+    const x0 = Math.floor(cx - outer), x1 = Math.ceil(cx + outer);
+    const y0 = Math.floor(cy - outer), y1 = Math.ceil(cy + outer);
+    for (let y = y0; y <= y1; y++) {
+      for (let x = x0; x <= x1; x++) {
+        const d = Math.hypot(x + 0.5 - cx, y + 0.5 - cy);
+        if (d <= outer && d >= inner) {
+          this.setPixel(x, y, color);
+        } else {
+          // 1px-Antialiasing an beiden Kanten
+          const edge = Math.min(Math.abs(d - outer), Math.abs(d - inner));
+          if (edge < 1 && d > inner - 1 && d < outer + 1) {
+            this.setPixel(x, y, [color[0], color[1], color[2], (color[3] ?? 255) * (1 - edge)]);
+          }
+        }
+      }
+    }
+  }
+
+  // Gefülltes Polygon (even-odd) mit 2×2-Supersampling für glatte Kanten.
+  fillPolygon(points, color) {
+    let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+    for (const [x, y] of points) {
+      if (x < minX) minX = x;
+      if (x > maxX) maxX = x;
+      if (y < minY) minY = y;
+      if (y > maxY) maxY = y;
+    }
+    const inside = (px, py) => {
+      let hit = false;
+      for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+        const [xi, yi] = points[i];
+        const [xj, yj] = points[j];
+        if (yi > py !== yj > py && px < ((xj - xi) * (py - yi)) / (yj - yi) + xi) hit = !hit;
+      }
+      return hit;
+    };
+    const sub = [0.25, 0.75];
+    for (let y = Math.floor(minY); y <= Math.ceil(maxY); y++) {
+      for (let x = Math.floor(minX); x <= Math.ceil(maxX); x++) {
+        let n = 0;
+        for (const sy of sub) for (const sx of sub) if (inside(x + sx, y + sy)) n++;
+        if (n) this.setPixel(x, y, [color[0], color[1], color[2], (color[3] ?? 255) * (n / 4)]);
+      }
+    }
+  }
+
   toPNG() {
     const { width, height } = this;
     // Rohdaten mit Filter-Byte 0 pro Scanline

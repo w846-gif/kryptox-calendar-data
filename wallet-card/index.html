@@ -74,6 +74,8 @@
       .btn-wallet svg { width: 22px; height: 22px; }
       .btn-vcard { background: var(--accent); color: #17130a; }
       .btn-vcard svg { width: 20px; height: 20px; }
+      .btn.is-disabled { opacity: 0.5; pointer-events: none; cursor: default; }
+      .hint { margin: -4px 2px 2px; font-size: 12px; line-height: 1.4; color: var(--muted); text-align: center; }
       .foot { margin-top: 20px; text-align: center; font-size: 12px; color: var(--muted); }
       .foot a { color: var(--muted); }
     </style>
@@ -105,8 +107,9 @@
             <path d="M3 10 h18" />
             <path d="M16 14 h2" />
           </svg>
-          Zu Apple Wallet hinzufügen
+          <span id="wallet-label">Zu Apple Wallet hinzufügen</span>
         </a>
+        <p class="hint" id="wallet-hint" hidden></p>
         <button class="btn btn-vcard" id="vcard" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                stroke-linecap="round" stroke-linejoin="round">
@@ -184,6 +187,29 @@
           "END:VCARD",
         ].filter(Boolean).join("\r\n");
       }
+
+      // ── Wallet-Button nur aktiv, wenn eine signierte .pkpass vorliegt ─────
+      (async () => {
+        const btn = document.getElementById("wallet");
+        const hint = document.getElementById("wallet-hint");
+        const PKPASS = "./webatelier.pkpass";
+        let available = false;
+        try {
+          const res = await fetch(PKPASS, { method: "HEAD" });
+          const type = res.headers.get("content-type") || "";
+          available = res.ok && !type.includes("text/html");
+        } catch (_) {
+          available = false;
+        }
+        if (!available) {
+          btn.classList.add("is-disabled");
+          btn.setAttribute("aria-disabled", "true");
+          btn.removeAttribute("href");
+          document.getElementById("wallet-label").textContent = "Apple-Wallet-Karte in Vorbereitung";
+          hint.textContent = "Die Wallet-Karte wird gerade eingerichtet. In der Zwischenzeit kannst du den Kontakt direkt speichern.";
+          hint.hidden = false;
+        }
+      })();
 
       document.getElementById("vcard").addEventListener("click", () => {
         const blob = new Blob([buildVCard(CONTACT)], { type: "text/vcard;charset=utf-8" });

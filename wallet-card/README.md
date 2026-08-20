@@ -135,23 +135,57 @@ scannt, kann dich direkt als Kontakt speichern.
 
 ---
 
-## 4. Online bereitstellen (optional)
+## 4. Online bereitstellen (GitHub Pages – automatisch)
 
-Die `index.html` ist eine fertige Web-Visitenkarte. Damit der Wallet-Button
-funktioniert, muss `webatelier.pkpass` neben der HTML liegen und mit dem
-richtigen MIME-Typ ausgeliefert werden:
+Im Repo liegt der Workflow **`.github/workflows/deploy-wallet-card.yml`**. Er
+läuft bei jedem Push auf den Wallet-Card-Branch (oder manuell über
+*Actions → Deploy Wallet Card → Run workflow*) und veröffentlicht die Seite auf
+**GitHub Pages**:
 
 ```
-application/vnd.apple.pkpass
+https://<user>.github.io/<repo>/
 ```
 
-- **GitHub Pages** liefert `.pkpass` bereits mit korrektem Typ aus – einfach
-  `index.html` **und** `webatelier.pkpass` ins veröffentlichte Verzeichnis legen.
-- Bei eigenem Server ggf. den MIME-Typ konfigurieren (z. B. in `.htaccess`:
-  `AddType application/vnd.apple.pkpass .pkpass`).
+Der Workflow:
+1. erzeugt die Bilder (`make-images.mjs`),
+2. baut die **signierte `.pkpass`** – *aber nur, wenn die Zertifikat-Secrets
+   gesetzt sind* (siehe unten); sonst geht die Seite ohne `.pkpass` live und der
+   Wallet-Button zeigt „in Vorbereitung",
+3. deployt `index.html`, `assets/` und (falls vorhanden) `webatelier.pkpass`.
 
-Danach ist die Karte unter deiner URL erreichbar, z. B.
-`https://webatelier.com/karte/` – „Zu Apple Wallet hinzufügen" antippen, fertig.
+GitHub Pages liefert `.pkpass` automatisch mit dem korrekten MIME-Typ
+`application/vnd.apple.pkpass` aus – kein manuelles Setup nötig.
+
+### Zertifikate als GitHub-Secrets hinterlegen
+
+Damit die CI die Karte signieren kann, ohne den privaten Schlüssel ins Repo zu
+legen, kodierst du die drei PEM-Dateien als Base64 und trägst sie unter
+**Repo → Settings → Secrets and variables → Actions** ein:
+
+```bash
+cd wallet-card
+base64 -w0 certs/signerCert.pem   # -> Secret PASS_SIGNER_CERT
+base64 -w0 certs/signerKey.pem    # -> Secret PASS_SIGNER_KEY
+base64 -w0 certs/wwdr.pem         # -> Secret PASS_WWDR
+# (macOS ohne -w0:  base64 -i certs/signerCert.pem | tr -d '\n')
+```
+
+| Secret               | Inhalt                                              |
+| -------------------- | --------------------------------------------------- |
+| `PASS_SIGNER_CERT`   | Base64 von `signerCert.pem`                         |
+| `PASS_SIGNER_KEY`    | Base64 von `signerKey.pem`                          |
+| `PASS_WWDR`          | Base64 von `wwdr.pem`                               |
+| `PASS_KEY_PASSPHRASE`| Passphrase des Schlüssels (nur falls gesetzt)       |
+| `PASS_TEAM_ID`       | dein 10-stelliger Team-Identifier                   |
+| `PASS_TYPE_ID`       | z. B. `pass.com.webatelier.card`                    |
+| `PASS_ORG_NAME`      | z. B. `Webatelier`                                  |
+
+Nach dem Setzen der Secrets einmal den Workflow neu ausführen – der
+Wallet-Button wird automatisch scharf.
+
+> **Eigener Server statt Pages?** `index.html`, `assets/` und `webatelier.pkpass`
+> zusammen hochladen und den MIME-Typ setzen (z. B. `.htaccess`:
+> `AddType application/vnd.apple.pkpass .pkpass`).
 
 ---
 

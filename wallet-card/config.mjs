@@ -38,15 +38,16 @@ export const config = {
 
   // --- Apple-Developer-Angaben ---------------------------------------------
   //  Beziehst du alles aus dem Apple Developer Portal (siehe README.md).
+  //  Werte lassen sich per Umgebungsvariable überschreiben (praktisch für CI):
   apple: {
     // Aus dem Portal → Identifiers → Pass Type IDs, z. B. "pass.com.webatelier.card"
-    passTypeIdentifier: 'pass.com.webatelier.card',
+    passTypeIdentifier: process.env.PASS_TYPE_ID ?? 'pass.com.webatelier.card',
     // Dein 10-stelliger Team-Identifier (oben rechts im Developer-Portal).
-    teamIdentifier: 'ABCDE12345',
+    teamIdentifier: process.env.PASS_TEAM_ID ?? 'ABCDE12345',
     // Wird in Wallet als Aussteller angezeigt.
-    organizationName: 'Webatelier',
+    organizationName: process.env.PASS_ORG_NAME ?? 'Webatelier',
     // Eindeutige Seriennummer – kann so bleiben; pro Person/Karte einmalig.
-    serialNumber: 'webatelier-card-001',
+    serialNumber: process.env.PASS_SERIAL ?? 'webatelier-card-001',
   },
 
   // --- Pfade zu den Zertifikaten (siehe README.md, Schritt „Zertifikate") ---

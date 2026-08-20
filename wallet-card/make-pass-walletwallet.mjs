@@ -32,10 +32,11 @@ if (!key) {
 const c = config.contact;
 const services = (c.services ?? []).join(' · ');
 
-// Marken-Bilder: Kompass-Logo (oben links) + Erde als Thumbnail (oben rechts),
-// genau wie auf der Visitenkarte. Reines Schwarz als Hintergrund.
+// Marken-Bilder: Kompass-Logo (oben links) + die Erde als grosser Banner
+// (Store-Card-Layout, Erde rechts, nach links in Schwarz auslaufend) – wie auf
+// der Visitenkarte. Reines Schwarz als Hintergrund.
 const logo = dataURI('assets/logo@3x.png');
-const globe = dataURI('assets/globe-thumb.png');
+const strip = dataURI('assets/strip.png');
 
 const body = {
   organizationName: config.apple.organizationName || c.company,
@@ -44,7 +45,7 @@ const body = {
   colorPreset: 'dark',
   color: '#000000',
   ...(logo ? { logoURL: logo } : {}),
-  ...(globe ? { thumbnailURL: globe } : {}),
+  ...(strip ? { stripURL: strip } : {}),
   sharingProhibited: false,
   primaryFields: [{ label: '', value: c.tagline || c.company }],
   secondaryFields: [

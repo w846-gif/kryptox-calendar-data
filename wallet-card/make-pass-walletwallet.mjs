@@ -47,7 +47,9 @@ const body = {
   ...(logo ? { logoURL: logo } : {}),
   ...(strip ? { stripURL: strip } : {}),
   sharingProhibited: false,
-  primaryFields: [{ label: '', value: c.taglineWallet || c.tagline || c.company }],
+  // Schlagzeile + Leistungen sind ins Banner-Bild (strip) eingebrannt,
+  // daher hier kein überlagerndes Primärfeld.
+  primaryFields: [],
   secondaryFields: [
     c.phone && { label: 'TELEFON', value: c.phone },
     c.email && { label: 'E-MAIL', value: c.email },

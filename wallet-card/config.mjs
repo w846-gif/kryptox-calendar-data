@@ -14,7 +14,7 @@ export const config = {
     fullName: '',
     // Grosse Schlagzeile (wie „Webseiten für Ihr Geschäft.").
     tagline: 'Webseiten für Ihr Geschäft.',
-    phone: '0152 695 9143',
+    phone: '0151 2695 9143',
     email: 'kontakt@webartelier.com',
     website: 'https://webartelier.com',
     // Adresse optional – leer lassen ('') zum Ausblenden.

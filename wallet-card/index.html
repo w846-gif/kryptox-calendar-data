@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Webatelier – Visitenkarte</title>
+    <meta name="description" content="Digitale Visitenkarte von Webatelier – zu Apple Wallet hinzufügen oder als Kontakt speichern." />
+    <style>
+      :root {
+        --bg: #121317;
+        --card: #1b1d23;
+        --card-edge: #2a2d36;
+        --fg: #f0eee8;
+        --muted: #b0aa9e;
+        --accent: #c8a96a;
+        --accent-soft: rgba(200, 169, 106, 0.14);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { height: 100%; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: radial-gradient(1200px 800px at 50% -10%, #1e2028, var(--bg));
+        color: var(--fg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        -webkit-font-smoothing: antialiased;
+      }
+      .card {
+        width: 100%;
+        max-width: 380px;
+        background: linear-gradient(180deg, #23262e, #1b1d23);
+        border: 1px solid var(--card-edge);
+        border-radius: 22px;
+        padding: 34px 28px 28px;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 26px;
+      }
+      .monogram {
+        width: 46px; height: 46px;
+        flex: 0 0 46px;
+        display: grid; place-items: center;
+        border-radius: 12px;
+        background: var(--accent-soft);
+        border: 1px solid rgba(200, 169, 106, 0.35);
+      }
+      .monogram svg { width: 26px; height: 26px; }
+      .brand-name { font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+      .name { font-size: 27px; font-weight: 700; letter-spacing: -0.01em; }
+      .role { margin-top: 5px; color: var(--accent); font-size: 15px; font-weight: 500; }
+      .divider { height: 1px; background: var(--card-edge); margin: 22px 0; }
+      .rows { display: grid; gap: 14px; }
+      .row { display: flex; align-items: center; gap: 13px; text-decoration: none; color: var(--fg); }
+      .row:hover .row-val { color: var(--accent); }
+      .row-ic { width: 20px; flex: 0 0 20px; color: var(--muted); }
+      .row-ic svg { width: 20px; height: 20px; display: block; }
+      .row-label { display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+      .row-val { display: block; font-size: 15px; margin-top: 2px; word-break: break-word; transition: color 0.15s; }
+      .actions { margin-top: 28px; display: grid; gap: 12px; }
+      .btn {
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+        height: 50px; border-radius: 13px; font-size: 15px; font-weight: 600;
+        text-decoration: none; cursor: pointer; border: 0; width: 100%;
+        transition: transform 0.06s ease, opacity 0.15s;
+      }
+      .btn:active { transform: scale(0.985); }
+      .btn-wallet { background: #000; color: #fff; border: 1px solid #3a3a3a; }
+      .btn-wallet svg { width: 22px; height: 22px; }
+      .btn-vcard { background: var(--accent); color: #17130a; }
+      .btn-vcard svg { width: 20px; height: 20px; }
+      .foot { margin-top: 20px; text-align: center; font-size: 12px; color: var(--muted); }
+      .foot a { color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="brand">
+        <span class="monogram" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="#c8a96a" stroke-width="11"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 22 L34 82 L50 42 L66 82 L86 22" />
+          </svg>
+        </span>
+        <span class="brand-name" id="brand">Webatelier</span>
+      </div>
+
+      <h1 class="name" id="name">Vorname Nachname</h1>
+      <p class="role" id="role">Web-Design &amp; Entwicklung</p>
+
+      <div class="divider"></div>
+
+      <div class="rows" id="rows"><!-- via JS befüllt --></div>
+
+      <div class="actions">
+        <a class="btn btn-wallet" id="wallet" href="./webatelier.pkpass">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="13" rx="2.5" />
+            <path d="M3 10 h18" />
+            <path d="M16 14 h2" />
+          </svg>
+          Zu Apple Wallet hinzufügen
+        </a>
+        <button class="btn btn-vcard" id="vcard" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M19 8v6M22 11h-6" />
+          </svg>
+          Als Kontakt speichern
+        </button>
+      </div>
+
+      <p class="foot">Digitale Visitenkarte · <a id="site-link" href="https://webatelier.com">webatelier.com</a></p>
+    </main>
+
+    <script>
+      // ── Kontaktdaten (mit config.mjs synchron halten) ─────────────────────
+      const CONTACT = {
+        fullName: "Vorname Nachname",
+        title: "Web-Design & Entwicklung",
+        company: "Webatelier",
+        phone: "+41 00 000 00 00",
+        email: "hallo@webatelier.com",
+        website: "https://webatelier.com",
+        address: "Musterstrasse 1, 8000 Zürich",
+      };
+
+      const ICONS = {
+        phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/>',
+        email: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
+        website: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/>',
+        address: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>',
+      };
+
+      function svg(paths) {
+        return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + paths + '</svg>';
+      }
+
+      // Kopf befüllen
+      document.getElementById("brand").textContent = CONTACT.company;
+      document.getElementById("name").textContent = CONTACT.fullName;
+      document.getElementById("role").textContent = CONTACT.title;
+      document.title = CONTACT.company + " – " + CONTACT.fullName;
+      const siteLink = document.getElementById("site-link");
+      siteLink.href = CONTACT.website;
+      siteLink.textContent = CONTACT.website.replace(/^https?:\/\//, "");
+
+      // Kontaktzeilen
+      const rows = [
+        CONTACT.phone && { ic: "phone", label: "Telefon", val: CONTACT.phone, href: "tel:" + CONTACT.phone.replace(/\s/g, "") },
+        CONTACT.email && { ic: "email", label: "E-Mail", val: CONTACT.email, href: "mailto:" + CONTACT.email },
+        CONTACT.website && { ic: "website", label: "Website", val: CONTACT.website.replace(/^https?:\/\//, ""), href: CONTACT.website },
+        CONTACT.address && { ic: "address", label: "Adresse", val: CONTACT.address, href: "https://maps.apple.com/?q=" + encodeURIComponent(CONTACT.address) },
+      ].filter(Boolean);
+
+      document.getElementById("rows").innerHTML = rows
+        .map(
+          (r) =>
+            `<a class="row" href="${r.href}"><span class="row-ic">${svg(ICONS[r.ic])}</span><span><span class="row-label">${r.label}</span><span class="row-val">${r.val}</span></span></a>`
+        )
+        .join("");
+
+      // ── vCard-Download ────────────────────────────────────────────────────
+      function buildVCard(c) {
+        const [first, ...rest] = c.fullName.split(" ");
+        const last = rest.join(" ");
+        return [
+          "BEGIN:VCARD", "VERSION:3.0",
+          `N:${last};${first};;;`, `FN:${c.fullName}`,
+          c.company && `ORG:${c.company}`,
+          c.title && `TITLE:${c.title}`,
+          c.phone && `TEL;TYPE=CELL:${c.phone}`,
+          c.email && `EMAIL;TYPE=INTERNET:${c.email}`,
+          c.website && `URL:${c.website}`,
+          c.address && `ADR;TYPE=WORK:;;${c.address};;;;`,
+          "END:VCARD",
+        ].filter(Boolean).join("\r\n");
+      }
+
+      document.getElementById("vcard").addEventListener("click", () => {
+        const blob = new Blob([buildVCard(CONTACT)], { type: "text/vcard;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = CONTACT.company.toLowerCase() + ".vcf";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      });
+    </script>
+  </body>
+</html>

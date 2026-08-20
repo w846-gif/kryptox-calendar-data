@@ -1,0 +1,10 @@
+# NIEMALS Zertifikate oder private Schlüssel committen!
+certs/
+*.pem
+*.p12
+*.cer
+*.key
+
+# Build-Artefakte
+.build/
+webatelier.pkpass

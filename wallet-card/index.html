@@ -109,6 +109,10 @@
       .btn-vcard:hover { border-color: rgba(255,255,255,0.5); }
       .btn-vcard svg { width: 20px; height: 20px; }
       .btn.is-disabled { opacity: 0.4; pointer-events: none; }
+      .links { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 2px; }
+      .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.2); height: 48px; font-size: 14px; }
+      .btn-ghost:hover { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.05); }
+      .btn-ghost .ext { opacity: 0.55; font-size: 15px; line-height: 1; }
       .hint { margin: -2px 2px 0; font-size: 12px; line-height: 1.45; color: var(--muted); }
 
       .foot { margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--edge); max-width: 400px; }
@@ -116,6 +120,8 @@
       .foot .site a { color: var(--fg); text-decoration: none; }
       .foot .site a:hover { text-decoration: underline; text-underline-offset: 3px; }
       .foot .sub { margin-top: 6px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-dim); }
+      .foot .tagline { font-family: var(--serif); font-size: 16px; color: var(--muted); }
+      .foot .tagline em { font-style: italic; color: #c4c4c4; }
 
       @media (max-width: 640px) {
         .globe { top: -3%; right: -22%; width: 80%; opacity: 0.5; }
@@ -170,11 +176,14 @@
             </svg>
             Als Kontakt speichern
           </button>
+          <div class="links">
+            <a class="btn btn-ghost" id="link-web" href="#" target="_blank" rel="noopener">Website <span class="ext" aria-hidden="true">↗</span></a>
+            <a class="btn btn-ghost" id="link-ref" href="#" target="_blank" rel="noopener">Referenzen <span class="ext" aria-hidden="true">↗</span></a>
+          </div>
         </div>
 
         <div class="foot">
-          <p class="site"><a id="site-link" href="https://webartelier.com">webartelier.com</a></p>
-          <p class="sub">Referenzen &amp; Leistungen ansehen</p>
+          <p class="tagline">Sichtbar. <em>Im ganzen Norden.</em></p>
         </div>
       </main>
     </div>
@@ -188,6 +197,8 @@
         phone: "0151 2695 9143",
         email: "kontakt@webartelier.com",
         website: "https://webartelier.com",
+        // Link des "Referenzen"-Buttons (exakte URL bitte bestätigen)
+        referencesUrl: "https://webartelier.com",
         address: "",
         services: ["Design", "Sichtbarkeit", "Hosting", "Betreuung"],
       };
@@ -205,9 +216,8 @@
       const emailEl = document.getElementById("email");
       emailEl.textContent = CONTACT.email;
       emailEl.href = "mailto:" + CONTACT.email;
-      const siteLink = document.getElementById("site-link");
-      siteLink.href = CONTACT.website;
-      siteLink.textContent = CONTACT.website.replace(/^https?:\/\//, "");
+      document.getElementById("link-web").href = CONTACT.website;
+      document.getElementById("link-ref").href = CONTACT.referencesUrl || CONTACT.website;
 
       // ── Wallet-Button nur aktiv, wenn eine signierte .pkpass vorliegt ─────
       (async () => {

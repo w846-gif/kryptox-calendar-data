@@ -45,11 +45,20 @@ async function main() {
     existsSync(join(CERTS, 'signerKey.pem')) &&
     existsSync(join(CERTS, 'wwdr.pem'));
 
+  // Reihenfolge der Pass-Quellen:
+  //  1. eigenes Apple-Zertifikat (volle Kontrolle/Branding)
+  //  2. WalletWallet-API-Key (Drittanbieter, signiert die Karte)
+  //  3. bereits vorhandene/committete webartelier.pkpass (Fallback)
   if (haveCerts) {
-    console.log(fromEnv ? 'Zertifikate aus Secrets übernommen.' : 'Zertifikate in certs/ gefunden.');
+    console.log(fromEnv ? 'Apple-Zertifikate aus Secrets übernommen.' : 'Apple-Zertifikate in certs/ gefunden.');
     run('make-pass.mjs');
+  } else if (process.env.WALLETWALLET_API_KEY) {
+    console.log('WalletWallet-API-Key gefunden – erzeuge signierte Karte über WalletWallet.');
+    run('make-pass-walletwallet.mjs');
+  } else if (existsSync(PKPASS)) {
+    console.log('Nutze vorhandene webartelier.pkpass (kein Zertifikat/Key gesetzt).');
   } else {
-    console.log('Keine Zertifikate – baue die Seite ohne .pkpass (Wallet-Button bleibt "in Vorbereitung").');
+    console.log('Keine Karte – baue die Seite ohne .pkpass (Wallet-Button bleibt "in Vorbereitung").');
   }
 
   // 4. public/ zusammenstellen

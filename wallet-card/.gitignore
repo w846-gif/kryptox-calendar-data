@@ -8,5 +8,7 @@ certs/
 # Build-Artefakte
 .build/
 public/
-webartelier.pkpass
 webatelier.pkpass
+
+# Hinweis: wallet-card/webartelier.pkpass wird bewusst committet (statische,
+# signierte Karte ohne Geheimnisse), damit sie auch ohne Key/Zertifikat deployt.

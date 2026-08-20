@@ -23,6 +23,25 @@ Alles läuft mit **Node.js** und **OpenSSL** – keine npm-Abhängigkeiten.
 
 ---
 
+## Wie wird die Karte signiert? (3 Wege)
+
+Apple Wallet akzeptiert nur `.pkpass`-Dateien, die mit einem **von Apple
+ausgestellten** Zertifikat signiert sind. Dafür gibt es drei Wege — `build.mjs`
+wählt automatisch in dieser Reihenfolge:
+
+1. **Eigenes Apple-Zertifikat** (`certs/`, siehe Abschnitt 2) → volle Kontrolle
+   & eigenes Logo/Design. Baut über `make-pass.mjs`.
+2. **WalletWallet-API** (Drittanbieter) → signiert die Karte mit deren
+   Apple-Zertifikat. `WALLETWALLET_API_KEY=ww_live_… node make-pass-walletwallet.mjs`.
+   Gratis, aber eigenes Logobild/Custom-Farben nur im Pro-Tarif.
+3. **Vorhandene `webartelier.pkpass`** im Ordner → wird unverändert deployt
+   (die aktuell eingecheckte Karte wurde über Weg 2 erzeugt).
+
+> **Aktiv:** Die live geschaltete Karte nutzt Weg 2 (WalletWallet).
+> Für das exakte schwarz-weisse Design mit Kompass-Logo auf Weg 1 wechseln.
+
+---
+
 ## Schnellstart (in 3 Befehlen)
 
 ```bash

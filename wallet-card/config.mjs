@@ -14,6 +14,9 @@ export const config = {
     fullName: '',
     // Grosse Schlagzeile (wie „Webseiten für Ihr Geschäft.").
     tagline: 'Webseiten für Ihr Geschäft.',
+    // Fürs Wallet: expliziter Zeilenumbruch, damit „Geschäft." unter
+    // „Webseiten für Ihr" steht und nicht über die Erde läuft.
+    taglineWallet: 'Webseiten für Ihr\nGeschäft.',
     phone: '0151 2695 9143',
     email: 'kontakt@webartelier.com',
     website: 'https://webartelier.com',

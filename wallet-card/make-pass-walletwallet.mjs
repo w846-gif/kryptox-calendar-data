@@ -47,6 +47,10 @@ const body = {
   ...(logo ? { logoURL: logo } : {}),
   ...(strip ? { stripURL: strip } : {}),
   sharingProhibited: false,
+  // Website-Domain oben rechts (neben der Wortmarke)
+  headerFields: c.website
+    ? [{ label: 'WEBSITE', value: c.website.replace(/^https?:\/\//, '') }]
+    : [],
   // Schlagzeile + Leistungen sind ins Banner-Bild (strip) eingebrannt,
   // daher hier kein überlagerndes Primärfeld.
   primaryFields: [],

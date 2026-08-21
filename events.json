@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-21T01:20:57.138Z",
-  "count": 99,
+  "updatedAt": "2026-08-21T02:45:07.170Z",
+  "count": 100,
   "events": [
     {
       "title": "BusinessNZ Services Index",
@@ -793,6 +793,14 @@
       "impact": "Low",
       "forecast": "-16",
       "previous": "-16"
+    },
+    {
+      "title": "President Trump Speaks",
+      "country": "USD",
+      "date": "2026-08-21T19:00:00-04:00",
+      "impact": "Medium",
+      "forecast": "",
+      "previous": ""
     }
   ]
 }

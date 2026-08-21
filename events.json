@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-21T04:38:52.518Z",
-  "count": 100,
+  "updatedAt": "2026-08-21T05:33:28.061Z",
+  "count": 99,
   "events": [
     {
       "title": "BusinessNZ Services Index",
@@ -681,14 +681,6 @@
       "impact": "Low",
       "forecast": "0.0B",
       "previous": "16.0B"
-    },
-    {
-      "title": "Foreign Direct Investment ytd/y",
-      "country": "CNY",
-      "date": "2026-08-21T02:02:00-04:00",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "-5.0%"
     },
     {
       "title": "French Flash Manufacturing PMI",

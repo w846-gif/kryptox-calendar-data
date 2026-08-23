@@ -157,16 +157,20 @@
         </div>
 
         <div class="actions">
-          <a class="btn btn-wallet" id="wallet" href="./webartelier.pkpass">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                 stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="6" width="18" height="13" rx="2.5" />
-              <path d="M3 10 h18" />
-              <path d="M16 14 h2" />
-            </svg>
-            <span id="wallet-label">Zu Apple Wallet hinzufügen</span>
-          </a>
-          <p class="hint" id="wallet-hint" hidden></p>
+          <!-- WALLET-ACTION-START (wird für die Flyer-Version entfernt) -->
+          <div id="wallet-action">
+            <a class="btn btn-wallet" id="wallet" href="./webartelier.pkpass">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="6" width="18" height="13" rx="2.5" />
+                <path d="M3 10 h18" />
+                <path d="M16 14 h2" />
+              </svg>
+              <span id="wallet-label">Zu Apple Wallet hinzufügen</span>
+            </a>
+            <p class="hint" id="wallet-hint" hidden></p>
+          </div>
+          <!-- WALLET-ACTION-END -->
           <button class="btn btn-vcard" id="vcard" type="button">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
                  stroke-linecap="round" stroke-linejoin="round">
@@ -223,6 +227,7 @@
       (async () => {
         const btn = document.getElementById("wallet");
         const hint = document.getElementById("wallet-hint");
+        if (!btn || !hint) return; // Flyer-Version hat keinen Wallet-Button
         try {
           const res = await fetch("./webartelier.pkpass", { method: "HEAD" });
           const type = res.headers.get("content-type") || "";

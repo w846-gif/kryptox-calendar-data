@@ -9,7 +9,7 @@
 // In CI:   Secrets werden als PASS_SIGNER_* Umgebungsvariablen übergeben.
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { mkdir, rm, writeFile, copyFile, cp } from 'node:fs/promises';
+import { mkdir, rm, writeFile, readFile, copyFile, cp } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -64,7 +64,18 @@ async function main() {
   // 4. public/ zusammenstellen
   await rm(PUBLIC, { recursive: true, force: true });
   await mkdir(PUBLIC, { recursive: true });
-  await copyFile(join(HERE, 'index.html'), join(PUBLIC, 'index.html'));
+  // index.html (volle Version) + flyer.html (Kunden-/Flyer-Version ohne
+  // "Zu Apple Wallet hinzufügen"-Button, aus derselben Quelle abgeleitet).
+  const indexHtml = await readFile(join(HERE, 'index.html'), 'utf8');
+  await writeFile(join(PUBLIC, 'index.html'), indexHtml);
+  const flyerHtml = indexHtml.replace(
+    /[ \t]*<!-- WALLET-ACTION-START[\s\S]*?WALLET-ACTION-END -->\n?/,
+    ''
+  );
+  if (flyerHtml === indexHtml) {
+    console.warn('⚠  Wallet-Block-Marker nicht gefunden – flyer.html ist identisch zu index.html.');
+  }
+  await writeFile(join(PUBLIC, 'flyer.html'), flyerHtml);
   await cp(join(HERE, 'assets'), join(PUBLIC, 'assets'), { recursive: true });
   if (existsSync(PKPASS)) {
     await copyFile(PKPASS, join(PUBLIC, 'webartelier.pkpass'));

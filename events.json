@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-25T01:18:21.862Z",
+  "updatedAt": "2026-08-25T02:39:29.107Z",
   "count": 69,
   "events": [
     {
@@ -271,7 +271,7 @@
       "country": "USD",
       "date": "2026-08-26T10:30:00-04:00",
       "impact": "Low",
-      "forecast": "",
+      "forecast": "1.9M",
       "previous": "4.4M"
     },
     {
@@ -351,7 +351,7 @@
       "country": "CAD",
       "date": "2026-08-27T08:30:00-04:00",
       "impact": "Low",
-      "forecast": "5.6B",
+      "forecast": "3.5B",
       "previous": "-7.2B"
     },
     {
@@ -367,7 +367,7 @@
       "country": "USD",
       "date": "2026-08-27T08:30:00-04:00",
       "impact": "Low",
-      "forecast": "-99.9B",
+      "forecast": "-100.8B",
       "previous": "-101.5B"
     },
     {
@@ -431,7 +431,7 @@
       "country": "EUR",
       "date": "2026-08-28T02:45:00-04:00",
       "impact": "Low",
-      "forecast": "0.0%",
+      "forecast": "0.1%",
       "previous": "0.4%"
     },
     {
@@ -503,7 +503,7 @@
       "country": "USD",
       "date": "2026-08-28T09:45:00-04:00",
       "impact": "Low",
-      "forecast": "57.8",
+      "forecast": "57.9",
       "previous": "57.6"
     },
     {

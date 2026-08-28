@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-08-27T20:57:23.623Z",
-  "count": 71,
+  "updatedAt": "2026-08-28T05:10:50.755Z",
+  "count": 72,
   "events": [
     {
       "title": "Core Retail Sales q/q",
@@ -545,6 +545,14 @@
       "impact": "Medium",
       "forecast": "",
       "previous": "4.3%"
+    },
+    {
+      "title": "MPC Member Mann Speaks",
+      "country": "GBP",
+      "date": "2026-08-28T10:30:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": ""
     },
     {
       "title": "Jackson Hole Symposium",

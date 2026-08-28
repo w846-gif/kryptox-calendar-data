@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-28T05:10:50.755Z",
+  "updatedAt": "2026-08-28T17:37:23.493Z",
   "count": 72,
   "events": [
     {
@@ -485,7 +485,7 @@
     {
       "title": "Italian 10-y Bond Auction",
       "country": "EUR",
-      "date": "2026-08-28T05:33:00-04:00",
+      "date": "2026-08-28T05:09:00-04:00",
       "impact": "Low",
       "forecast": "",
       "previous": "4.00|1.7"

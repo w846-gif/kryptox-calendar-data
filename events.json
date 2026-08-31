@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-31T07:33:04.559Z",
+  "updatedAt": "2026-08-31T15:54:52.496Z",
   "count": 112,
   "events": [
     {
@@ -879,7 +879,7 @@
       "country": "USD",
       "date": "2026-09-04T08:30:00-04:00",
       "impact": "High",
-      "forecast": "58K",
+      "forecast": "55K",
       "previous": "-23K"
     },
     {

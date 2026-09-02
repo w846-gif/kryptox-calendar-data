@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-02T12:53:49.016Z",
+  "updatedAt": "2026-09-02T17:02:55.522Z",
   "count": 113,
   "events": [
     {
@@ -567,7 +567,7 @@
       "country": "NZD",
       "date": "2026-09-02T18:45:00-04:00",
       "impact": "Low",
-      "forecast": "-2.2%",
+      "forecast": "-2.1%",
       "previous": "-2.0%"
     },
     {
@@ -591,7 +591,7 @@
       "country": "AUD",
       "date": "2026-09-02T21:30:00-04:00",
       "impact": "Low",
-      "forecast": "1.50B",
+      "forecast": "1.52B",
       "previous": "1.93B"
     },
     {
@@ -631,7 +631,7 @@
       "country": "CHF",
       "date": "2026-09-03T03:00:00-04:00",
       "impact": "Low",
-      "forecast": "1.5%",
+      "forecast": "1.7%",
       "previous": "0.7%"
     },
     {

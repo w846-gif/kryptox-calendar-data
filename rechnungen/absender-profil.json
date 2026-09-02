@@ -1,0 +1,16 @@
+{
+  "_hinweis": "Absender-/Firmenstammdaten fuer Rechnungen. Vom Skill als Vorbelegung genutzt. Felder mit AUSFUELLEN muessen mit echten Werten befuellt werden - niemals erfinden.",
+  "firma": "webartelier.com",
+  "inhaber_oder_rechtsform": "AUSFUELLEN (z. B. 'Max Mustermann' bei Einzelunternehmen, oder 'webartelier GmbH')",
+  "strasse": "AUSFUELLEN",
+  "plz_ort": "AUSFUELLEN",
+  "land": "Deutschland",
+  "kontakt": "AUSFUELLEN (E-Mail / Telefon / Web)",
+  "besteuerung": "AUSFUELLEN ('regelbesteuerung' oder 'kleinunternehmer')",
+  "steuernummer": "AUSFUELLEN (Steuernummer ODER)",
+  "ust_id": "AUSFUELLEN (USt-IdNr., falls vorhanden)",
+  "bank_inhaber": "AUSFUELLEN",
+  "iban": "AUSFUELLEN",
+  "bic": "AUSFUELLEN",
+  "standard_zahlungsziel_tage": 14
+}

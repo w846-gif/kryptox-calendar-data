@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+  Vorlage Dienst-/Freelancer-Vertrag. Platzhalter {{...}} ersetzen. Die
+  optionalen §§ (Nutzungsrechte, Haftung, Datenschutz, Abwerbeverbot) nur
+  einfügen, wenn gewählt — Wortlaut siehe references/vertrag.md. Paragraphen
+  fortlaufend neu nummerieren, wenn Bausteine weggelassen werden.
+-->
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<style>
+  @page { size: A4; margin: 22mm 20mm; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 11pt;
+         color: #1a1a1a; line-height: 1.5; }
+  h1 { font-size: 16pt; text-align: center; margin-bottom: 20px; }
+  h2 { font-size: 11.5pt; margin: 18px 0 4px; }
+  .parteien { margin: 8px 0 4px; }
+  .zwischen { text-align: center; margin: 8px 0; color: #555; }
+  p { margin: 4px 0; }
+  ol.abs { list-style: none; padding-left: 0; margin: 4px 0; }
+  ol.abs > li { margin: 3px 0; }
+  .praeambel { font-style: italic; margin: 14px 0; }
+  .unterschriften { margin-top: 48px; display: flex; justify-content: space-between; gap: 40px; }
+  .sig { flex: 1; }
+  .sig .line { border-top: 1px solid #1a1a1a; margin-top: 40px; padding-top: 4px;
+               font-size: 9.5pt; color: #333; }
+  .hinweisbox { font-size: 9pt; color: #666; border: 1px solid #ccc;
+                padding: 8px 10px; margin-top: 24px; }
+</style>
+</head>
+<body>
+
+  <h1>Dienst-/Freelancer-Vertrag</h1>
+
+  <p class="parteien"><strong>zwischen</strong></p>
+  <p>{{auftraggeber_name}}, {{auftraggeber_anschrift}}<br>
+     – nachfolgend „Auftraggeber" –</p>
+  <p class="zwischen">und</p>
+  <p>{{auftragnehmer_name}}, {{auftragnehmer_anschrift}}<br>
+     – nachfolgend „Auftragnehmer" –</p>
+
+  <p class="praeambel">{{praeambel}}</p>
+
+  <h2>§ 1 Vertragsgegenstand und Leistungen</h2>
+  <ol class="abs">
+    <li>(1) {{leistungsbeschreibung}}</li>
+    <li>(2) Der Auftragnehmer erbringt die Leistungen als selbständiger
+        Unternehmer in eigener Verantwortung und teilt Zeit und Ort der
+        Tätigkeit frei ein. Eine Eingliederung in die Betriebsorganisation des
+        Auftraggebers oder ein arbeitsrechtliches Weisungsrecht bestehen nicht.</li>
+  </ol>
+
+  <h2>§ 2 Vergütung</h2>
+  <ol class="abs">
+    <li>(1) Der Auftragnehmer erhält {{verguetung}} {{ust_zusatz}}.</li>
+    <li>(2) Die Abrechnung erfolgt {{abrechnung}}; die Vergütung ist innerhalb von
+        {{zahlungsziel}} Tagen nach Rechnungsstellung zur Zahlung fällig.</li>
+    <li>(3) Notwendige Auslagen werden {{auslagen_regelung}}.</li>
+  </ol>
+
+  <h2>§ 3 Laufzeit und Kündigung</h2>
+  <ol class="abs">
+    <li>(1) Der Vertrag beginnt am {{beginn}} und {{laufzeit_regelung}}.</li>
+    <li>(2) Der Vertrag kann von beiden Parteien mit einer Frist von
+        {{kuendigungsfrist}} gekündigt werden. Das Recht zur außerordentlichen
+        Kündigung aus wichtigem Grund (§ 626 BGB) bleibt unberührt.</li>
+    <li>(3) Kündigungen bedürfen der Textform.</li>
+  </ol>
+
+  <h2>§ 4 Pflichten der Parteien</h2>
+  <ol class="abs">
+    <li>(1) Der Auftragnehmer führt die Leistungen mit der Sorgfalt eines
+        ordentlichen Unternehmers aus.</li>
+    <li>(2) Der Auftraggeber stellt die zur Leistungserbringung erforderlichen
+        Informationen und Unterlagen rechtzeitig bereit.</li>
+    <li>(3) Der Auftragnehmer trägt seine Steuern und Sozialabgaben selbst; ein
+        Anspruch auf Urlaub, Entgeltfortzahlung oder sonstige Arbeitnehmer-
+        leistungen besteht nicht.</li>
+  </ol>
+
+  <!-- OPTIONALE PARAGRAPHEN HIER EINFÜGEN (Wortlaut: references/vertrag.md):
+       § Nutzungsrechte · § Haftung · § Datenschutz · § Abwerbeverbot
+       Nur die gewählten einfügen und fortlaufend nummerieren. -->
+  {{optionale_paragraphen}}
+
+  <h2>§ {{n_schluss}} Schlussbestimmungen</h2>
+  <ol class="abs">
+    <li>(1) Änderungen und Ergänzungen dieses Vertrages bedürfen der Textform.
+        Dies gilt auch für die Änderung dieser Klausel.</li>
+    <li>(2) Sollte eine Bestimmung unwirksam sein, bleibt der Vertrag im Übrigen
+        wirksam; die unwirksame Bestimmung ist durch eine zulässige zu ersetzen,
+        die dem wirtschaftlichen Zweck am nächsten kommt.</li>
+    <li>(3) Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist,
+        soweit zulässig, {{gerichtsstand}}.</li>
+  </ol>
+
+  <div class="unterschriften">
+    <div class="sig">
+      <div class="line">Ort, Datum – Auftraggeber<br>{{auftraggeber_name}}</div>
+    </div>
+    <div class="sig">
+      <div class="line">Ort, Datum – Auftragnehmer<br>{{auftragnehmer_name}}</div>
+    </div>
+  </div>
+
+  <!-- OPTIONAL: Warnhinweis nur intern/zur Rücksprache, aus finalem PDF ggf. entfernen -->
+  <div class="hinweisbox">
+    Hinweis: Dieser Vertrag ist eine Vorlage und ersetzt keine Rechtsberatung.
+    Bei nachvertraglichen Wettbewerbsverboten, Datenverarbeitung im Auftrag (AVV)
+    oder Zweifeln an der Selbständigkeit (Scheinselbständigkeit) sollte er
+    fachlich geprüft werden.
+  </div>
+
+</body>
+</html>

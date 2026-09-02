@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--
+  Rechnungs-Vorlage. Platzhalter {{...}} ersetzen. Blöcke mit <!-- OPTIONAL -->
+  je nach Fall entfernen oder füllen. Positionszeilen und USt-Zeilen dynamisch
+  aufbauen (siehe Kommentare). Danach nach PDF konvertieren (siehe SKILL.md).
+-->
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 11pt;
+         color: #1a1a1a; line-height: 1.45; }
+  .kopf { display: flex; justify-content: space-between; align-items: flex-start; }
+  .absender-klein { font-size: 8pt; color: #555; border-bottom: 1px solid #999;
+                    padding-bottom: 2px; margin-bottom: 24px; }
+  .empfaenger { margin-top: 8px; }
+  .meta { text-align: right; font-size: 10pt; }
+  .meta table { border-collapse: collapse; margin-left: auto; }
+  .meta td { padding: 1px 0 1px 16px; }
+  h1 { font-size: 18pt; margin: 28px 0 4px; }
+  .betreff { font-weight: bold; margin: 18px 0 4px; }
+  table.positionen { width: 100%; border-collapse: collapse; margin-top: 12px; }
+  table.positionen th { text-align: left; border-bottom: 2px solid #1a1a1a;
+                        padding: 6px 4px; font-size: 10pt; }
+  table.positionen td { padding: 6px 4px; border-bottom: 1px solid #ddd;
+                        vertical-align: top; }
+  .num { text-align: right; white-space: nowrap; }
+  .summen { width: 48%; margin-left: 52%; margin-top: 10px; }
+  .summen td { padding: 3px 4px; }
+  .summen .gesamt td { border-top: 2px solid #1a1a1a; font-weight: bold;
+                       font-size: 12pt; padding-top: 6px; }
+  .hinweis { margin-top: 18px; font-size: 10pt; }
+  .fuss { margin-top: 40px; font-size: 8.5pt; color: #555;
+          border-top: 1px solid #999; padding-top: 8px;
+          display: flex; justify-content: space-between; gap: 16px; }
+  .fuss div { flex: 1; }
+</style>
+</head>
+<body>
+
+  <div class="kopf">
+    <div>
+      <div class="absender-klein">{{absender_name}} · {{absender_strasse}} · {{absender_plz_ort}}</div>
+      <div class="empfaenger">
+        {{empfaenger_name}}<br>
+        {{empfaenger_strasse}}<br>
+        {{empfaenger_plz_ort}}
+      </div>
+    </div>
+    <div class="meta">
+      <strong>{{absender_name}}</strong><br>
+      {{absender_strasse}}<br>
+      {{absender_plz_ort}}<br>
+      {{absender_kontakt}}<br><br>
+      <table>
+        <tr><td>Rechnungsnr.:</td><td><strong>{{rechnungsnummer}}</strong></td></tr>
+        <tr><td>Rechnungsdatum:</td><td>{{rechnungsdatum}}</td></tr>
+        <tr><td>Leistungsdatum:</td><td>{{leistungsdatum}}</td></tr>
+        <!-- OPTIONAL: <tr><td>Kundennr./Ref.:</td><td>{{referenz}}</td></tr> -->
+      </table>
+    </div>
+  </div>
+
+  <h1>Rechnung {{rechnungsnummer}}</h1>
+  <!-- OPTIONAL --><div class="betreff">{{betreff}}</div>
+
+  <table class="positionen">
+    <thead>
+      <tr>
+        <th style="width:6%">Pos.</th>
+        <th>Beschreibung</th>
+        <th class="num" style="width:12%">Menge</th>
+        <th class="num" style="width:16%">Einzelpreis</th>
+        <!-- USt-Spalte NUR bei Regelbesteuerung anzeigen -->
+        <th class="num" style="width:8%">USt</th>
+        <th class="num" style="width:18%">Betrag (netto)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--
+        POSITIONSZEILE — je Position wiederholen. "Menge" kann "10 Std." oder
+        "3 Stk." oder "Pauschale" sein; Einzelpreis entsprechend (Stundensatz/
+        Stückpreis/—). USt-Spalte bei § 19 komplett weglassen.
+      -->
+      <tr>
+        <td>{{pos_nr}}</td>
+        <td>{{pos_bezeichnung}}</td>
+        <td class="num">{{pos_menge}}</td>
+        <td class="num">{{pos_einzelpreis}}</td>
+        <td class="num">{{pos_ustsatz}}</td>
+        <td class="num">{{pos_netto}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SUMMEN — Variante A: Regelbesteuerung -->
+  <table class="summen">
+    <tr><td>Zwischensumme (netto)</td><td class="num">{{summe_netto}}</td></tr>
+    <!-- USt-ZEILE je vorkommendem Satz wiederholen (19 % und/oder 7 %) -->
+    <tr><td>zzgl. {{ustsatz}} USt auf {{netto_zu_satz}}</td><td class="num">{{ust_betrag}}</td></tr>
+    <tr class="gesamt"><td>Gesamtbetrag</td><td class="num">{{brutto}}</td></tr>
+  </table>
+
+  <!-- SUMMEN — Variante B: Kleinunternehmer § 19 (obige Tabelle ersetzen)
+  <table class="summen">
+    <tr class="gesamt"><td>Gesamtbetrag</td><td class="num">{{brutto}}</td></tr>
+  </table>
+  <p class="hinweis">Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
+  -->
+
+  <div class="hinweis">
+    Zahlbar ohne Abzug innerhalb von {{zahlungsziel}} Tagen bis zum
+    {{faelligkeit_datum}} auf das unten genannte Konto. Bitte geben Sie die
+    Rechnungsnummer <strong>{{rechnungsnummer}}</strong> als Verwendungszweck an.
+    <!-- OPTIONAL Skonto: Bei Zahlung bis {{skonto_datum}} gewähren wir {{skonto_prozent}} Skonto. -->
+    <br>Vielen Dank für Ihren Auftrag.
+  </div>
+
+  <div class="fuss">
+    <div>
+      <strong>{{absender_name}}</strong><br>
+      {{absender_strasse}}<br>
+      {{absender_plz_ort}}<br>
+      {{absender_kontakt}}
+    </div>
+    <div>
+      <strong>Steuer</strong><br>
+      {{steuernummer_oder_ustid}}
+    </div>
+    <div>
+      <strong>Bankverbindung</strong><br>
+      {{bank_inhaber}}<br>
+      IBAN: {{iban}}<br>
+      BIC: {{bic}}
+    </div>
+  </div>
+
+</body>
+</html>

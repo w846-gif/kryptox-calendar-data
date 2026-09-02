@@ -1,66 +1,91 @@
 <!DOCTYPE html>
 <!--
-  Rechnungs-Vorlage. Platzhalter {{...}} ersetzen. Blöcke mit <!-- OPTIONAL -->
-  je nach Fall entfernen oder füllen. Positionszeilen und USt-Zeilen dynamisch
-  aufbauen (siehe Kommentare). Danach nach PDF konvertieren (siehe SKILL.md).
+  Rechnungs-Vorlage im Markendesign von webartelier.com (Fraunces + Nunito,
+  monochrom). Platzhalter {{...}} ersetzen. Blöcke mit <!-- OPTIONAL --> je nach
+  Fall entfernen/füllen. Positions- und USt-Zeilen dynamisch aufbauen. Danach
+  nach PDF konvertieren (siehe SKILL.md). Design-Tokens: references/markendesign.md
 -->
 <html lang="de">
 <head>
 <meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg: #ffffff; --ink: #19191a; --muted: #737373;
+    --line: #e6e6e6; --surface: #f5f5f5; --strong: #19191a;
+    --serif: "Fraunces", "Cormorant Garamond", Georgia, serif;
+    --sans: "Nunito", system-ui, "Segoe UI", sans-serif;
+  }
   @page { size: A4; margin: 20mm 18mm; }
   * { box-sizing: border-box; }
-  body { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 11pt;
-         color: #1a1a1a; line-height: 1.45; }
-  .kopf { display: flex; justify-content: space-between; align-items: flex-start; }
-  .absender-klein { font-size: 8pt; color: #555; border-bottom: 1px solid #999;
-                    padding-bottom: 2px; margin-bottom: 24px; }
-  .empfaenger { margin-top: 8px; }
-  .meta { text-align: right; font-size: 10pt; }
-  .meta table { border-collapse: collapse; margin-left: auto; }
-  .meta td { padding: 1px 0 1px 16px; }
-  h1 { font-size: 18pt; margin: 28px 0 4px; }
-  .betreff { font-weight: bold; margin: 18px 0 4px; }
-  table.positionen { width: 100%; border-collapse: collapse; margin-top: 12px; }
-  table.positionen th { text-align: left; border-bottom: 2px solid #1a1a1a;
-                        padding: 6px 4px; font-size: 10pt; }
-  table.positionen td { padding: 6px 4px; border-bottom: 1px solid #ddd;
+  body { font-family: var(--sans); font-size: 10.5pt; color: var(--ink);
+         line-height: 1.5; background: var(--bg); }
+  .wortmarke { font-family: var(--serif); font-size: 20pt; font-weight: 500;
+               letter-spacing: .2px; }
+  .claim { font-size: 8.5pt; color: var(--muted); letter-spacing: .3px; }
+  .kopf { display: flex; justify-content: space-between; align-items: flex-start;
+          border-bottom: 2px solid var(--strong); padding-bottom: 14px; }
+  .kopf .meta { text-align: right; font-size: 9.5pt; }
+  .kopf .meta table { border-collapse: collapse; margin-left: auto; margin-top: 6px; }
+  .kopf .meta td { padding: 1px 0 1px 18px; }
+  .kopf .meta .lbl { color: var(--muted); }
+  .absender-klein { font-size: 8pt; color: var(--muted);
+                    border-bottom: 1px solid var(--line); padding-bottom: 2px;
+                    margin: 26px 0 20px; }
+  .empfaenger { line-height: 1.4; }
+  h1 { font-family: var(--serif); font-size: 22pt; font-weight: 500;
+       margin: 22px 0 2px; }
+  .betreff { color: var(--muted); margin-bottom: 6px; }
+  table.positionen { width: 100%; border-collapse: collapse; margin-top: 14px; }
+  table.positionen th { text-align: left; border-bottom: 1.5px solid var(--strong);
+                        padding: 8px 4px; font-size: 9pt; font-weight: 700;
+                        text-transform: uppercase; letter-spacing: .4px; }
+  table.positionen td { padding: 8px 4px; border-bottom: 1px solid var(--line);
                         vertical-align: top; }
   .num { text-align: right; white-space: nowrap; }
-  .summen { width: 48%; margin-left: 52%; margin-top: 10px; }
-  .summen td { padding: 3px 4px; }
-  .summen .gesamt td { border-top: 2px solid #1a1a1a; font-weight: bold;
-                       font-size: 12pt; padding-top: 6px; }
-  .hinweis { margin-top: 18px; font-size: 10pt; }
-  .fuss { margin-top: 40px; font-size: 8.5pt; color: #555;
-          border-top: 1px solid #999; padding-top: 8px;
-          display: flex; justify-content: space-between; gap: 16px; }
+  .summen { width: 50%; margin-left: 50%; margin-top: 12px;
+            background: var(--surface); border-radius: 4px; padding: 6px 12px; }
+  .summen table { width: 100%; border-collapse: collapse; }
+  .summen td { padding: 4px 2px; }
+  .summen .gesamt td { border-top: 1.5px solid var(--strong); font-weight: 700;
+                       font-size: 12pt; padding-top: 8px; }
+  .hinweis { margin-top: 20px; font-size: 10pt; }
+  .par19 { font-family: var(--serif); font-style: italic; color: var(--ink); }
+  .fuss { margin-top: 42px; font-size: 8.5pt; color: var(--muted);
+          border-top: 1px solid var(--line); padding-top: 10px;
+          display: flex; justify-content: space-between; gap: 18px; }
   .fuss div { flex: 1; }
+  .fuss strong { color: var(--ink); font-weight: 600; }
 </style>
 </head>
 <body>
 
   <div class="kopf">
     <div>
-      <div class="absender-klein">{{absender_name}} · {{absender_strasse}} · {{absender_plz_ort}}</div>
-      <div class="empfaenger">
-        {{empfaenger_name}}<br>
-        {{empfaenger_strasse}}<br>
-        {{empfaenger_plz_ort}}
-      </div>
+      <div class="wortmarke">Webartelier Nord</div>
+      <div class="claim">Webseiten für Geschäfte in Norddeutschland</div>
     </div>
     <div class="meta">
       <strong>{{absender_name}}</strong><br>
       {{absender_strasse}}<br>
       {{absender_plz_ort}}<br>
-      {{absender_kontakt}}<br><br>
+      {{absender_kontakt}}
       <table>
-        <tr><td>Rechnungsnr.:</td><td><strong>{{rechnungsnummer}}</strong></td></tr>
-        <tr><td>Rechnungsdatum:</td><td>{{rechnungsdatum}}</td></tr>
-        <tr><td>Leistungsdatum:</td><td>{{leistungsdatum}}</td></tr>
-        <!-- OPTIONAL: <tr><td>Kundennr./Ref.:</td><td>{{referenz}}</td></tr> -->
+        <tr><td class="lbl">Rechnungsnr.</td><td><strong>{{rechnungsnummer}}</strong></td></tr>
+        <tr><td class="lbl">Rechnungsdatum</td><td>{{rechnungsdatum}}</td></tr>
+        <tr><td class="lbl">Leistungsdatum</td><td>{{leistungsdatum}}</td></tr>
+        <!-- OPTIONAL: <tr><td class="lbl">Kundennr./Ref.</td><td>{{referenz}}</td></tr> -->
       </table>
     </div>
+  </div>
+
+  <div class="absender-klein">{{absender_name}} · {{absender_strasse}} · {{absender_plz_ort}}</div>
+  <div class="empfaenger">
+    {{empfaenger_name}}<br>
+    {{empfaenger_strasse}}<br>
+    {{empfaenger_plz_ort}}
   </div>
 
   <h1>Rechnung {{rechnungsnummer}}</h1>
@@ -80,9 +105,9 @@
     </thead>
     <tbody>
       <!--
-        POSITIONSZEILE — je Position wiederholen. "Menge" kann "10 Std." oder
-        "3 Stk." oder "Pauschale" sein; Einzelpreis entsprechend (Stundensatz/
-        Stückpreis/—). USt-Spalte bei § 19 komplett weglassen.
+        POSITIONSZEILE — je Position wiederholen. "Menge" kann "10 Std.",
+        "3 Stk." oder "Pauschale" sein; Einzelpreis entsprechend. USt-Spalte bei
+        § 19 komplett weglassen.
       -->
       <tr>
         <td>{{pos_nr}}</td>
@@ -96,18 +121,22 @@
   </table>
 
   <!-- SUMMEN — Variante A: Regelbesteuerung -->
-  <table class="summen">
-    <tr><td>Zwischensumme (netto)</td><td class="num">{{summe_netto}}</td></tr>
-    <!-- USt-ZEILE je vorkommendem Satz wiederholen (19 % und/oder 7 %) -->
-    <tr><td>zzgl. {{ustsatz}} USt auf {{netto_zu_satz}}</td><td class="num">{{ust_betrag}}</td></tr>
-    <tr class="gesamt"><td>Gesamtbetrag</td><td class="num">{{brutto}}</td></tr>
-  </table>
+  <div class="summen">
+    <table>
+      <tr><td>Zwischensumme (netto)</td><td class="num">{{summe_netto}}</td></tr>
+      <!-- USt-ZEILE je vorkommendem Satz wiederholen (19 % und/oder 7 %) -->
+      <tr><td>zzgl. {{ustsatz}} USt auf {{netto_zu_satz}}</td><td class="num">{{ust_betrag}}</td></tr>
+      <tr class="gesamt"><td>Gesamtbetrag</td><td class="num">{{brutto}}</td></tr>
+    </table>
+  </div>
 
-  <!-- SUMMEN — Variante B: Kleinunternehmer § 19 (obige Tabelle ersetzen)
-  <table class="summen">
-    <tr class="gesamt"><td>Gesamtbetrag</td><td class="num">{{brutto}}</td></tr>
-  </table>
-  <p class="hinweis">Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
+  <!-- SUMMEN — Variante B: Kleinunternehmer § 19 (obigen Block ersetzen)
+  <div class="summen">
+    <table>
+      <tr class="gesamt"><td>Gesamtbetrag</td><td class="num">{{brutto}}</td></tr>
+    </table>
+  </div>
+  <p class="hinweis par19">Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
   -->
 
   <div class="hinweis">

@@ -43,6 +43,11 @@ bleibt. Halte dich daran; bei Bedarf außerhalb weise kurz hin, statt zu raten.
 - **Verträge:** **Dienst-/Freelancer-Vertrag** (§ 611 BGB) mit optionalen
   Bausteinen (Nutzungsrechte/IP, Haftungsbegrenzung, DSGVO/AVV,
   Wettbewerbs-/Abwerbeverbot).
+- **Design:** Dokumente erscheinen im **Markendesign von webartelier.com**
+  (monochrom, Serif *Fraunces* + Sans *Nunito*, Wortmarke „Webartelier Nord").
+  Tokens und Regeln in `references/markendesign.md`; die HTML-Vorlagen setzen sie
+  bereits um — bei Anpassungen dort nachschlagen, nicht eigenmächtig Farben
+  hinzufügen.
 
 ## Ablauf
 
@@ -149,5 +154,7 @@ individuelle Fälle fachlich zu prüfen sind, gehört ans Ende — mehr nicht.
   E-Rechnung, Nummern-Register, Prüf-Checkliste.
 - `references/vertrag.md` — Aufbau Dienst-/Freelancer-Vertrag, optionale Klauseln
   im Wortlaut, Scheinselbständigkeit, Prüf-Checkliste.
+- `references/markendesign.md` — Design-Tokens (Farben, Fonts, Wortmarke) von
+  webartelier.com für das einheitliche Look-and-Feel der PDFs.
 - `assets/rechnung-vorlage.html` / `assets/vertrag-vorlage.html` — Layout-Vorlagen.
 - `scripts/naechste_rechnungsnummer.py` — lückenlose Nummernvergabe.

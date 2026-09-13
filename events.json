@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-13T21:34:44.890Z",
-  "count": 97,
+  "updatedAt": "2026-09-13T23:55:12.264Z",
+  "count": 103,
   "events": [
     {
       "title": "BRICS Summit",
@@ -121,6 +121,14 @@
       "impact": "Low",
       "forecast": "",
       "previous": "-0.4%"
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "date": "2026-09-14T11:15:00-04:00",
+      "impact": "Medium",
+      "forecast": "",
+      "previous": ""
     },
     {
       "title": "New Home Prices m/m",
@@ -479,7 +487,7 @@
       "country": "USD",
       "date": "2026-09-16T14:00:00-04:00",
       "impact": "High",
-      "forecast": "3.75%",
+      "forecast": "4.00%",
       "previous": "3.75%"
     },
     {
@@ -747,6 +755,30 @@
       "previous": "35.1B"
     },
     {
+      "title": "Eurogroup Meetings",
+      "country": "EUR",
+      "date": "2026-09-18T06:15:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "date": "2026-09-18T06:15:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": ""
+    },
+    {
+      "title": "ECB President Lagarde Speaks",
+      "country": "EUR",
+      "date": "2026-09-18T06:30:00-04:00",
+      "impact": "Medium",
+      "forecast": "",
+      "previous": ""
+    },
+    {
       "title": "Capacity Utilization Rate",
       "country": "USD",
       "date": "2026-09-18T09:15:00-04:00",
@@ -777,6 +809,22 @@
       "impact": "Low",
       "forecast": "0.2%",
       "previous": "0.2%"
+    },
+    {
+      "title": "FOMC Member Schmid Speaks",
+      "country": "USD",
+      "date": "2026-09-18T11:45:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": ""
+    },
+    {
+      "title": "ECOFIN Meetings",
+      "country": "EUR",
+      "date": "2026-09-19T06:15:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": ""
     }
   ]
 }

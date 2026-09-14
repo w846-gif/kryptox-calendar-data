@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Halbe Stunde — Kaffeehaus und Röstbar in der Hamburger Sternschanze.">
+<style>body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+<title>Café Halbe Stunde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&display=swap">
+<style>
+:root{
+  --salbei:#C4C7AE;
+  --salbei-tief:#A9AE91;
+  --tinte:#241C16;
+  --tinte-weich:#4A3E34;
+  --papier:#F6F2E8;
+  --filterrot:#C0412A;
+  --crema:#D9A566;
+  --linie:rgba(36,28,22,.22);
+  --mass:min(1180px,100%);
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --text:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--salbei);
+  color:var(--tinte);
+  font-family:var(--text);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.16'/></svg>");
+  mix-blend-mode:multiply;
+}
+.wrap{position:relative;z-index:1;width:var(--mass);margin-inline:auto;padding-inline:24px}
+h1,h2,h3{font-family:var(--display);font-weight:500;text-wrap:balance;margin:0;letter-spacing:-.015em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--filterrot);outline-offset:3px;border-radius:2px}
+.eyebrow{
+  font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--tinte-weich);margin:0;
+}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- Kopf ---------- */
+.kopf{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:baseline;padding-block:26px 8px}
+.marke{font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:.02em}
+.kopf nav{display:flex;flex-wrap:wrap;gap:22px;margin-left:auto;font-size:14px}
+.kopf nav a{text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent;transition:border-color .2s,color .2s}
+.kopf nav a:hover{border-color:var(--filterrot);color:var(--filterrot)}
+
+/* ---------- Hero ---------- */
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:end;padding-block:46px 40px}
+.hero h1{font-size:clamp(46px,8.4vw,104px);line-height:.92;font-weight:300}
+.hero h1 em{font-style:italic;font-weight:500}
+.hero .satz{max-width:46ch;margin-top:26px;font-size:clamp(17px,1.6vw,19px);color:var(--tinte-weich)}
+.tasse{
+  position:relative;aspect-ratio:1;max-width:100%;border-radius:50%;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255,255,255,.5), rgba(255,255,255,0) 46%),
+    conic-gradient(from 200deg, #C9903F, #8A5A2B, #3B2317, #7A4C24, #D9A566, #C9903F);
+  box-shadow:0 26px 60px -24px rgba(36,28,22,.65), inset 0 0 0 10px var(--papier), inset 0 0 0 12px rgba(36,28,22,.18);
+  animation:dreh 44s linear infinite;
+}
+@keyframes dreh{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.tasse{animation:none}}
+
+/* ---------- Röstskala ---------- */
+.skala{border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);padding-block:22px;display:grid;gap:18px}
+.skala-kopf{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:baseline}
+.stufen{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stufe{
+  border:0;text-align:left;cursor:pointer;font:inherit;color:var(--tinte);
+  background:transparent;padding:12px 14px 14px;display:grid;gap:6px;
+  border-top:3px solid var(--linie);transition:border-color .2s,background .2s;
+}
+.stufe:hover{background:rgba(246,242,232,.45)}
+.stufe[aria-pressed="true"]{border-top-color:var(--filterrot);background:var(--papier)}
+.stufe b{font-family:var(--display);font-size:19px;font-weight:500}
+.stufe span{font-size:12.5px;color:var(--tinte-weich)}
+.balken{height:8px;border-radius:0;background:linear-gradient(90deg,#D9A566,#9A6430,#5E3820,#301C12)}
+.profil{
+  background:var(--papier);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:18px 32px;align-items:start;
+}
+.profil p{max-width:58ch}
+.profil .werte{display:grid;gap:2px;text-align:right;font-size:14px;color:var(--tinte-weich)}
+.profil .werte b{font-family:var(--display);font-size:26px;color:var(--tinte);font-weight:500}
+
+/* ---------- Abschnitte ---------- */
+section{padding-block:64px}
+.titelzeile{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline;margin-bottom:32px}
+.titelzeile h2{font-size:clamp(30px,4.4vw,46px)}
+
+/* ---------- Karte ---------- */
+.karte{background:var(--papier);padding:clamp(26px,4vw,52px);display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.karte h3{font-size:15px;font-family:var(--text);font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--linie);margin-bottom:14px}
+.posten{display:grid;gap:11px;list-style:none;margin:0;padding:0}
+.posten li{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:8px}
+.posten .name{font-size:17px}
+.posten .fuehrung{border-bottom:1px dotted var(--linie);transform:translateY(-4px)}
+.posten .preis{font-variant-numeric:tabular-nums;font-size:16px}
+.posten .note{grid-column:1/-1;font-size:13px;color:var(--tinte-weich);margin-top:-6px}
+
+/* ---------- Brühwerte ---------- */
+.tabellenbox{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:620px;font-variant-numeric:tabular-nums}
+caption{text-align:left;font-size:13.5px;color:var(--tinte-weich);padding-bottom:12px}
+th,td{text-align:left;padding:13px 16px 13px 0;border-bottom:1px solid var(--linie)}
+thead th{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinte-weich);font-weight:600;border-bottom:1px solid var(--tinte)}
+tbody tr:hover{background:rgba(246,242,232,.5)}
+td.methode{font-family:var(--display);font-size:18px}
+
+/* ---------- Herkunft ---------- */
+.herkunft{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.bohne{display:grid;gap:12px;align-content:start;padding-top:16px;border-top:2px solid var(--tinte)}
+.bohne h3{font-size:24px}
+.bohne .land{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--filterrot);font-weight:600}
+.bohne dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:6px 0 0;font-size:14px}
+.bohne dt{color:var(--tinte-weich)}
+.bohne dd{margin:0;font-variant-numeric:tabular-nums}
+.bohne .noten{font-family:var(--display);font-style:italic;font-size:17px;line-height:1.45}
+
+/* ---------- Haus / Besuch ---------- */
+.besuch{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:start}
+.zeiten{display:grid;gap:0;margin:0}
+.zeiten div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--linie);font-variant-numeric:tabular-nums}
+.zeiten dt{font-weight:500}
+.zeiten dd{margin:0;color:var(--tinte-weich)}
+.zeiten div.heute{background:var(--papier);padding-inline:14px;margin-inline:-14px}
+.zeiten div.heute dd{color:var(--tinte)}
+.adresse{background:var(--tinte);color:var(--papier);padding:30px;display:grid;gap:16px}
+.adresse h3{color:var(--papier);font-size:26px}
+.adresse p{font-size:15px;line-height:1.7;color:rgba(246,242,232,.82)}
+.adresse a.knopf{
+  justify-self:start;text-decoration:none;background:var(--filterrot);color:var(--papier);
+  padding:12px 22px;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  transition:background .2s,transform .2s;
+}
+.adresse a.knopf:hover{background:var(--crema);color:var(--tinte);transform:translateY(-2px)}
+
+/* ---------- Zitat ---------- */
+.zitat{border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);padding-block:56px;text-align:center}
+.zitat blockquote{margin:0 auto;max-width:24ch;font-family:var(--display);font-weight:300;font-size:clamp(28px,4.6vw,48px);line-height:1.12}
+.zitat figcaption{margin-top:20px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--tinte-weich)}
+
+/* ---------- Fuß ---------- */
+footer{padding-block:40px 56px;display:flex;flex-wrap:wrap;gap:14px 30px;align-items:baseline;font-size:13.5px;color:var(--tinte-weich)}
+footer .marke{color:var(--tinte)}
+footer a{text-decoration:none;border-bottom:1px solid var(--linie)}
+footer a:hover{border-color:var(--filterrot);color:var(--filterrot)}
+footer .rechts{margin-left:auto}
+
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr;gap:32px}
+  .tasse{max-width:min(320px,70vw);justify-self:start}
+  .karte,.besuch{grid-template-columns:1fr}
+  .herkunft{grid-template-columns:1fr}
+  .stufen{grid-template-columns:repeat(2,1fr)}
+  .profil{grid-template-columns:1fr}
+  .profil .werte{text-align:left}
+}
+</style>
+
+<div class="wrap">
+  <header class="kopf">
+    <div class="marke">Halbe&nbsp;Stunde<span style="color:var(--filterrot)">.</span></div>
+    <p class="eyebrow" style="margin:0">Kaffeehaus &amp; Röstbar · Hamburg</p>
+    <nav aria-label="Hauptmenü">
+      <a href="#roesten">Rösten</a>
+      <a href="#karte">Karte</a>
+      <a href="#bruehwerte">Brühwerte</a>
+      <a href="#herkunft">Herkunft</a>
+      <a href="#besuch">Besuch</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Eine halbe Stunde,<br>die dir <em>gehört</em>.</h1>
+      <p class="satz">Wir rösten dienstags im Laden, mahlen auf Bestellung und lassen den Espresso bei 27&nbsp;Sekunden stehen. Kein WLAN-Passwort an der Wand, dafür Wasser ohne Nachfrage und Platz für lange Gespräche.</p>
+    </div>
+    <div class="tasse" role="img" aria-label="Crema eines frisch gezogenen Espressos, von oben"></div>
+  </div>
+
+  <section id="roesten" class="skala" style="padding-block:22px">
+    <div class="skala-kopf">
+      <p class="eyebrow">Röstgrad nach Agtron</p>
+      <p style="font-size:14px;color:var(--tinte-weich)">Wähle eine Stufe — die Werte stammen aus unserem Röstprotokoll vom 9.&nbsp;September.</p>
+    </div>
+    <div class="balken" aria-hidden="true"></div>
+    <div class="stufen" id="stufen"></div>
+    <div class="profil">
+      <div>
+        <h3 id="profil-titel" style="font-size:24px;margin-bottom:8px">—</h3>
+        <p id="profil-text" style="color:var(--tinte-weich)">—</p>
+      </div>
+      <div class="werte">
+        <b class="num" id="profil-agtron">—</b>
+        <span>Agtron Ganzbohne</span>
+        <b class="num" id="profil-zeit" style="margin-top:10px">—</b>
+        <span>Röstzeit bis Abstich</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="karte">
+    <div class="titelzeile">
+      <h2>Die Karte</h2>
+      <p class="eyebrow">Stand September 2026 · Preise inkl. MwSt.</p>
+    </div>
+    <div class="karte">
+      <div>
+        <h3>Espresso &amp; Milch</h3>
+        <ul class="posten">
+          <li><span class="name">Espresso</span><span class="fuehrung"></span><span class="preis">2,60&nbsp;€</span><span class="note">18 g in · 42 g out · 27 s</span></li>
+          <li><span class="name">Doppelter Espresso</span><span class="fuehrung"></span><span class="preis">3,40&nbsp;€</span></li>
+          <li><span class="name">Cortado</span><span class="fuehrung"></span><span class="preis">3,20&nbsp;€</span></li>
+          <li><span class="name">Flat White</span><span class="fuehrung"></span><span class="preis">4,10&nbsp;€</span></li>
+          <li><span class="name">Cappuccino</span><span class="fuehrung"></span><span class="preis">3,80&nbsp;€</span></li>
+          <li><span class="name">Latte, 0,3 l</span><span class="fuehrung"></span><span class="preis">4,40&nbsp;€</span><span class="note">Hafer ohne Aufpreis, Heumilch vom Hof Rethwisch</span></li>
+        </ul>
+        <h3 style="margin-top:34px">Filter</h3>
+        <ul class="posten">
+          <li><span class="name">Handfilter, 300 ml</span><span class="fuehrung"></span><span class="preis">4,60&nbsp;€</span></li>
+          <li><span class="name">Batch Brew, 250 ml</span><span class="fuehrung"></span><span class="preis">3,30&nbsp;€</span></li>
+          <li><span class="name">Cold Brew, 16 h</span><span class="fuehrung"></span><span class="preis">4,20&nbsp;€</span></li>
+          <li><span class="name">Verkostung, drei Tassen</span><span class="fuehrung"></span><span class="preis">9,00&nbsp;€</span><span class="note">Samstags 11 Uhr, sechs Plätze am Röster</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Aus der Küche</h3>
+        <ul class="posten">
+          <li><span class="name">Butterbrot mit Meersalz</span><span class="fuehrung"></span><span class="preis">3,50&nbsp;€</span></li>
+          <li><span class="name">Kardamomschnecke</span><span class="fuehrung"></span><span class="preis">4,20&nbsp;€</span><span class="note">Teig über 18 Stunden geführt, ab 8 Uhr im Ofen</span></li>
+          <li><span class="name">Rührei, Schnittlauch, Sauerteig</span><span class="fuehrung"></span><span class="preis">9,80&nbsp;€</span></li>
+          <li><span class="name">Joghurt, Pflaume, Buchweizen</span><span class="fuehrung"></span><span class="preis">7,40&nbsp;€</span></li>
+          <li><span class="name">Käsekuchen ohne Boden</span><span class="fuehrung"></span><span class="preis">4,80&nbsp;€</span></li>
+        </ul>
+        <h3 style="margin-top:34px">Bohnen für zuhause</h3>
+        <ul class="posten">
+          <li><span class="name">Schanzenmischung, 250 g</span><span class="fuehrung"></span><span class="preis">12,50&nbsp;€</span></li>
+          <li><span class="name">Einzellage, 250 g</span><span class="fuehrung"></span><span class="preis">16,00&nbsp;€</span></li>
+          <li><span class="name">Abo, alle 14 Tage</span><span class="fuehrung"></span><span class="preis">ab 11,90&nbsp;€</span><span class="note">Zwei Tage nach der Röstung bei dir, Versand oder Abholung</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="bruehwerte">
+    <div class="titelzeile">
+      <h2>Brühwerte</h2>
+      <p class="eyebrow">So schmeckt es zuhause wie bei uns</p>
+    </div>
+    <div class="tabellenbox">
+      <table>
+        <caption>Wasser: 75 ppm Gesamthärte, 40 ppm Karbonathärte. Hamburger Leitungswasser filtern wir auf diese Werte herunter.</caption>
+        <thead>
+          <tr><th scope="col">Methode</th><th scope="col">Kaffee</th><th scope="col">Wasser</th><th scope="col">Temperatur</th><th scope="col">Zeit</th><th scope="col">Mahlgrad</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="methode">Espresso</td><td>18,0 g</td><td>42 g Bezug</td><td>93 °C</td><td>27 s</td><td>fein, 2,4 EK43</td></tr>
+          <tr><td class="methode">V60</td><td>18,0 g</td><td>300 g</td><td>94 °C</td><td>2:45 min</td><td>mittel, 7,5</td></tr>
+          <tr><td class="methode">Chemex</td><td>42,0 g</td><td>700 g</td><td>95 °C</td><td>4:30 min</td><td>grob, 9,0</td></tr>
+          <tr><td class="methode">French Press</td><td>30,0 g</td><td>500 g</td><td>92 °C</td><td>8:00 min</td><td>grob, 9,5</td></tr>
+          <tr><td class="methode">Cold Brew</td><td>80,0 g</td><td>1000 g</td><td>kalt</td><td>16 h</td><td>grob, 10,0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="herkunft">
+    <div class="titelzeile">
+      <h2>Drei Lagen im Regal</h2>
+      <p class="eyebrow">Ernte 2025/26 · direkt eingekauft</p>
+    </div>
+    <div class="herkunft">
+      <article class="bohne">
+        <p class="land">Äthiopien</p>
+        <h3>Duromina</h3>
+        <p class="noten">Bergamotte, Aprikose, schwarzer Tee im Nachklang.</p>
+        <dl>
+          <dt>Höhe</dt><dd>1 950 m</dd>
+          <dt>Varietät</dt><dd>Heirloom</dd>
+          <dt>Aufbereitung</dt><dd>gewaschen</dd>
+          <dt>Agtron</dt><dd>78</dd>
+        </dl>
+      </article>
+      <article class="bohne">
+        <p class="land">Kolumbien</p>
+        <h3>La Esperanza</h3>
+        <p class="noten">Rote Johannisbeere, Rohrzucker, weiche Säure.</p>
+        <dl>
+          <dt>Höhe</dt><dd>1 720 m</dd>
+          <dt>Varietät</dt><dd>Castillo</dd>
+          <dt>Aufbereitung</dt><dd>honey</dd>
+          <dt>Agtron</dt><dd>68</dd>
+        </dl>
+      </article>
+      <article class="bohne">
+        <p class="land">Brasilien</p>
+        <h3>Fazenda Rio Claro</h3>
+        <p class="noten">Haselnuss, Kakao, dichter Körper — unser Espresso-Rückgrat.</p>
+        <dl>
+          <dt>Höhe</dt><dd>1 150 m</dd>
+          <dt>Varietät</dt><dd>Yellow Bourbon</dd>
+          <dt>Aufbereitung</dt><dd>natural</dd>
+          <dt>Agtron</dt><dd>55</dd>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <figure class="zitat">
+    <blockquote>Guter Kaffee hat es nicht eilig.</blockquote>
+    <figcaption>Marlene Ahrens · Rösterin seit 2014</figcaption>
+  </figure>
+
+  <section id="besuch">
+    <div class="titelzeile">
+      <h2>Komm vorbei</h2>
+      <p class="eyebrow">Sternschanze · 4 Minuten vom S-Bahnhof</p>
+    </div>
+    <div class="besuch">
+      <dl class="zeiten" id="zeiten"></dl>
+      <div class="adresse">
+        <h3>Susannenstraße 31</h3>
+        <p>20357 Hamburg<br>Telefon 040 / 41 23 88 90<br>moin@halbestunde.cafe</p>
+        <p>18 Plätze innen, 12 auf dem Bürgersteig. Hunde gern, Reservierung nur für die Samstagsverkostung.</p>
+        <a class="knopf" href="mailto:moin@halbestunde.cafe?subject=Platz%20bei%20der%20Verkostung">Verkostung anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="marke">Halbe Stunde</span>
+    <span>Susannenstraße 31 · 20357 Hamburg</span>
+    <span class="rechts"><a href="mailto:moin@halbestunde.cafe">moin@halbestunde.cafe</a></span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var roeste = [
+    {name:"Hell",      kurz:"Filter, Einzellage", agtron:"78", zeit:"9:20 min",
+     titel:"Hell — Nordic Light",
+     text:"Abstich kurz nach dem ersten Knacken. Die Säure bleibt vorn, der Zucker karamellisiert nur an der Oberfläche. So rösten wir die äthiopischen Lagen für den Handfilter."},
+    {name:"Mittelhell",kurz:"Batch Brew",         agtron:"68", zeit:"10:45 min",
+     titel:"Mittelhell — Haus-Filter",
+     text:"Eine Minute Entwicklungszeit mehr. Die Frucht tritt einen Schritt zurück, dafür trägt der Körper. Unsere Standardröstung für die Kanne am Tresen."},
+    {name:"Mittel",    kurz:"Espresso, Milch",    agtron:"58", zeit:"11:30 min",
+     titel:"Mittel — Schanzenmischung",
+     text:"Der Punkt, an dem Espresso in Milch noch etwas zu sagen hat. Kakao und Nuss vorn, ein Rest Johannisbeere hinten. 70 % Brasilien, 30 % Kolumbien."},
+    {name:"Dunkel",    kurz:"nur auf Bestellung", agtron:"46", zeit:"12:40 min",
+     titel:"Dunkel — auf Bestellung",
+     text:"Bis kurz vor das zweite Knacken. Wir rösten das nur für Gäste, die es ausdrücklich so wollen — mit Öl auf der Bohne und viel Röstbitterkeit."}
+  ];
+  var box = document.getElementById("stufen");
+  var t = document.getElementById("profil-titel"),
+      x = document.getElementById("profil-text"),
+      a = document.getElementById("profil-agtron"),
+      z = document.getElementById("profil-zeit");
+
+  function zeige(i){
+    var r = roeste[i];
+    t.textContent = r.titel; x.textContent = r.text;
+    a.textContent = r.agtron; z.textContent = r.zeit;
+    Array.prototype.forEach.call(box.children, function(b,j){
+      b.setAttribute("aria-pressed", j===i ? "true" : "false");
+    });
+  }
+  roeste.forEach(function(r,i){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "stufe"; b.setAttribute("aria-pressed","false");
+    b.innerHTML = '<b>'+r.name+'</b><span>'+r.kurz+'</span>';
+    b.addEventListener("click", function(){ zeige(i); });
+    box.appendChild(b);
+  });
+  zeige(2);
+
+  var tage = [
+    ["Montag","geschlossen"],
+    ["Dienstag","8:00 – 17:00 · Rösttag"],
+    ["Mittwoch","8:00 – 17:00"],
+    ["Donnerstag","8:00 – 17:00"],
+    ["Freitag","8:00 – 18:00"],
+    ["Samstag","9:00 – 18:00 · Verkostung 11:00"],
+    ["Sonntag","9:30 – 16:00"]
+  ];
+  var heute = (new Date().getDay() + 6) % 7;
+  var dl = document.getElementById("zeiten");
+  tage.forEach(function(p,i){
+    var d = document.createElement("div");
+    if(i===heute) d.className = "heute";
+    d.innerHTML = '<dt>'+p[0]+(i===heute?' <span style="color:var(--filterrot);font-size:12px;letter-spacing:.14em;text-transform:uppercase">heute</span>':'')+'</dt><dd>'+p[1]+'</dd>';
+    dl.appendChild(d);
+  });
+})();
+</script>
+</body>
+</html>

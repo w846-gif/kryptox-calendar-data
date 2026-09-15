@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-15T12:48:08.996Z",
-  "count": 104,
+  "updatedAt": "2026-09-15T17:30:23.754Z",
+  "count": 105,
   "events": [
     {
       "title": "BRICS Summit",
@@ -283,9 +283,17 @@
       "previous": "20.6"
     },
     {
+      "title": "Treasury Sec Bessent Speaks",
+      "country": "USD",
+      "date": "2026-09-15T10:00:00-04:00",
+      "impact": "Medium",
+      "forecast": "",
+      "previous": ""
+    },
+    {
       "title": "GDT Price Index",
       "country": "NZD",
-      "date": "2026-09-15T10:50:00-04:00",
+      "date": "2026-09-15T11:39:00-04:00",
       "impact": "Low",
       "forecast": "",
       "previous": "0.9%"

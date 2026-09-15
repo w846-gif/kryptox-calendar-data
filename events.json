@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-15T01:44:33.373Z",
+  "updatedAt": "2026-09-15T07:19:29.807Z",
   "count": 104,
   "events": [
     {
@@ -217,14 +217,6 @@
       "impact": "Low",
       "forecast": "5.0%",
       "previous": "4.9%"
-    },
-    {
-      "title": "Foreign Direct Investment ytd/y",
-      "country": "CNY",
-      "date": "2026-09-15T02:02:00-04:00",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "-6.2%"
     },
     {
       "title": "French Final CPI m/m",
@@ -537,6 +529,14 @@
       "impact": "High",
       "forecast": "0.1%",
       "previous": "0.8%"
+    },
+    {
+      "title": "Foreign Direct Investment ytd/y",
+      "country": "CNY",
+      "date": "2026-09-17T02:02:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "-6.2%"
     },
     {
       "title": "SECO Economic Forecasts",

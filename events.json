@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-16T17:30:55.488Z",
+  "updatedAt": "2026-09-16T20:59:26.430Z",
   "count": 105,
   "events": [
     {
@@ -539,14 +539,6 @@
       "previous": "0.8%"
     },
     {
-      "title": "Foreign Direct Investment ytd/y",
-      "country": "CNY",
-      "date": "2026-09-17T02:02:00-04:00",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "-6.2%"
-    },
-    {
       "title": "SECO Economic Forecasts",
       "country": "CHF",
       "date": "2026-09-17T03:00:00-04:00",
@@ -761,6 +753,14 @@
       "impact": "Medium",
       "forecast": "-0.2%",
       "previous": "-0.5%"
+    },
+    {
+      "title": "Foreign Direct Investment ytd/y",
+      "country": "CNY",
+      "date": "2026-09-18T02:02:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "-6.2%"
     },
     {
       "title": "Current Account",

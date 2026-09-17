@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-17T21:37:38.705Z",
-  "count": 105,
+  "updatedAt": "2026-09-17T23:57:12.831Z",
+  "count": 104,
   "events": [
     {
       "title": "BRICS Summit",
@@ -689,14 +689,6 @@
       "impact": "Low",
       "forecast": "-1775M",
       "previous": "-1949M"
-    },
-    {
-      "title": "GfK Consumer Confidence",
-      "country": "GBP",
-      "date": "2026-09-17T19:01:00-04:00",
-      "impact": "Low",
-      "forecast": "-16",
-      "previous": "-14"
     },
     {
       "title": "RBA Gov Bullock Speaks",

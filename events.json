@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-17T23:57:12.831Z",
-  "count": 104,
+  "updatedAt": "2026-09-18T04:18:41.520Z",
+  "count": 105,
   "events": [
     {
       "title": "BRICS Summit",
@@ -611,6 +611,14 @@
       "previous": "0.6%"
     },
     {
+      "title": "NHPI m/m",
+      "country": "CAD",
+      "date": "2026-09-17T08:30:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "-0.1%"
+    },
+    {
       "title": "RMPI m/m",
       "country": "CAD",
       "date": "2026-09-17T08:30:00-04:00",
@@ -709,7 +717,7 @@
     {
       "title": "BOJ Policy Rate",
       "country": "JPY",
-      "date": "2026-09-17T22:30:00-04:00",
+      "date": "2026-09-17T22:54:00-04:00",
       "impact": "High",
       "forecast": "<1.25%",
       "previous": "<1.00%"
@@ -717,7 +725,7 @@
     {
       "title": "Monetary Policy Statement",
       "country": "JPY",
-      "date": "2026-09-17T22:30:00-04:00",
+      "date": "2026-09-17T22:54:00-04:00",
       "impact": "High",
       "forecast": "",
       "previous": ""

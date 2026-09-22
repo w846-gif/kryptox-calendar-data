@@ -1,0 +1,21 @@
+{
+  "hosting": {
+    "public": "wallet-card/public",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "headers": [
+      {
+        "source": "**/*.pkpass",
+        "headers": [
+          { "key": "Content-Type", "value": "application/vnd.apple.pkpass" },
+          { "key": "Cache-Control", "value": "no-cache, max-age=0" }
+        ]
+      },
+      {
+        "source": "**/assets/**",
+        "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }]
+      }
+    ]
+  }
+}

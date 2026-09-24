@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-09-24T09:03:57.035Z",
-  "count": 80,
+  "updatedAt": "2026-09-24T14:18:45.890Z",
+  "count": 81,
   "events": [
     {
       "title": "Bank Holiday",
@@ -511,6 +511,14 @@
       "country": "USD",
       "date": "2026-09-24T10:10:00-04:00",
       "impact": "Low",
+      "forecast": "",
+      "previous": ""
+    },
+    {
+      "title": "President Trump Speaks",
+      "country": "USD",
+      "date": "2026-09-24T10:15:00-04:00",
+      "impact": "Medium",
       "forecast": "",
       "previous": ""
     },

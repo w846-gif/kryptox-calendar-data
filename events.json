@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T13:56:03.558Z",
+  "updatedAt": "2026-10-08T19:43:35.651Z",
   "count": 83,
   "events": [
     {
@@ -631,7 +631,7 @@
       "country": "CAD",
       "date": "2026-10-09T08:30:00-04:00",
       "impact": "High",
-      "forecast": "6.3K",
+      "forecast": "6.1K",
       "previous": "-41.7K"
     },
     {

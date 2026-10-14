@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T02:04:09.482Z",
+  "updatedAt": "2026-10-14T07:54:37.725Z",
   "count": 111,
   "events": [
     {
@@ -229,7 +229,7 @@
     {
       "title": "Trade Balance",
       "country": "CNY",
-      "date": "2026-10-13T23:03:00-04:00",
+      "date": "2026-10-13T22:31:00-04:00",
       "impact": "Low",
       "forecast": "790B",
       "previous": "809B"
@@ -237,7 +237,7 @@
     {
       "title": "USD-Denominated Trade Balance",
       "country": "CNY",
-      "date": "2026-10-13T23:04:00-04:00",
+      "date": "2026-10-13T22:31:00-04:00",
       "impact": "Low",
       "forecast": "116.8B",
       "previous": "119.1B"
@@ -807,7 +807,7 @@
       "country": "CAD",
       "date": "2026-10-16T08:30:00-04:00",
       "impact": "Low",
-      "forecast": "",
+      "forecast": "23.59B",
       "previous": "20.65B"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T09:40:17.597Z",
+  "updatedAt": "2026-10-19T16:50:01.450Z",
   "count": 86,
   "events": [
     {
@@ -105,14 +105,6 @@
       "impact": "Low",
       "forecast": "-0.3%",
       "previous": "0.4%"
-    },
-    {
-      "title": "Foreign Direct Investment ytd/y",
-      "country": "CNY",
-      "date": "2026-10-19T05:10:00-04:00",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "-5.3%"
     },
     {
       "title": "CPI m/m",
@@ -243,6 +235,14 @@
       "previous": "25.8"
     },
     {
+      "title": "Foreign Direct Investment ytd/y",
+      "country": "CNY",
+      "date": "2026-10-20T05:10:00-04:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "-5.3%"
+    },
+    {
       "title": "10-y Bond Auction",
       "country": "GBP",
       "date": "2026-10-20T05:33:00-04:00",
@@ -279,7 +279,7 @@
       "country": "USD",
       "date": "2026-10-20T10:00:00-04:00",
       "impact": "Low",
-      "forecast": "-0.4%",
+      "forecast": "-0.7%",
       "previous": "0.3%"
     },
     {
@@ -319,7 +319,7 @@
       "country": "JPY",
       "date": "2026-10-20T19:50:00-04:00",
       "impact": "Low",
-      "forecast": "-0.21T",
+      "forecast": "-0.26T",
       "previous": "-0.84T"
     },
     {

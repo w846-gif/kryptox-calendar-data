@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T04:52:26.175Z",
+  "updatedAt": "2026-11-02T13:11:24.202Z",
   "count": 115,
   "events": [
     {
@@ -69,7 +69,7 @@
     {
       "title": "Retail Sales y/y",
       "country": "CHF",
-      "date": "2026-11-02T02:30:00-05:00",
+      "date": "2026-11-02T02:33:00-05:00",
       "impact": "Low",
       "forecast": "3.0%",
       "previous": "3.2%"

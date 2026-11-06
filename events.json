@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-06T11:52:37.760Z",
-  "count": 115,
+  "updatedAt": "2026-11-06T18:59:19.533Z",
+  "count": 116,
   "events": [
     {
       "title": "Daylight Saving Time Shift",
@@ -902,6 +902,14 @@
       "title": "FOMC Member Bowman Speaks",
       "country": "USD",
       "date": "2026-11-06T12:15:00-05:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": ""
+    },
+    {
+      "title": "FOMC Member Daly Speaks",
+      "country": "USD",
+      "date": "2026-11-06T13:00:00-05:00",
       "impact": "Low",
       "forecast": "",
       "previous": ""

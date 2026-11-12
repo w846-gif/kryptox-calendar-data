@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T03:15:29.302Z",
+  "updatedAt": "2026-11-12T11:40:38.031Z",
   "count": 106,
   "events": [
     {
@@ -539,22 +539,6 @@
       "previous": ""
     },
     {
-      "title": "M2 Money Supply y/y",
-      "country": "CNY",
-      "date": "2026-11-12T04:03:00-05:00",
-      "impact": "Low",
-      "forecast": "7.2%",
-      "previous": "7.2%"
-    },
-    {
-      "title": "New Loans",
-      "country": "CNY",
-      "date": "2026-11-12T04:03:00-05:00",
-      "impact": "Low",
-      "forecast": "80B",
-      "previous": "1080B"
-    },
-    {
       "title": "Building Permits m/m",
       "country": "CAD",
       "date": "2026-11-12T08:30:00-05:00",
@@ -745,6 +729,22 @@
       "impact": "Low",
       "forecast": "-4.5B",
       "previous": "-6.8B"
+    },
+    {
+      "title": "M2 Money Supply y/y",
+      "country": "CNY",
+      "date": "2026-11-13T05:03:00-05:00",
+      "impact": "Low",
+      "forecast": "7.2%",
+      "previous": "7.2%"
+    },
+    {
+      "title": "New Loans",
+      "country": "CNY",
+      "date": "2026-11-13T05:03:00-05:00",
+      "impact": "Low",
+      "forecast": "80B",
+      "previous": "1080B"
     },
     {
       "title": "Manufacturing Sales m/m",

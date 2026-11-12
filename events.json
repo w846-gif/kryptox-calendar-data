@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T11:40:38.031Z",
+  "updatedAt": "2026-11-12T19:38:36.796Z",
   "count": 106,
   "events": [
     {
@@ -579,14 +579,6 @@
       "previous": ""
     },
     {
-      "title": "Mortgage Delinquencies",
-      "country": "USD",
-      "date": "2026-11-12T10:00:00-05:00",
-      "impact": "Low",
-      "forecast": "",
-      "previous": "4.37%"
-    },
-    {
       "title": "CB Leading Index m/m",
       "country": "AUD",
       "date": "2026-11-12T10:30:00-05:00",
@@ -833,6 +825,14 @@
       "impact": "Low",
       "forecast": "",
       "previous": ""
+    },
+    {
+      "title": "Mortgage Delinquencies",
+      "country": "USD",
+      "date": "2026-11-13T12:59:00-05:00",
+      "impact": "Low",
+      "forecast": "",
+      "previous": "4.37%"
     },
     {
       "title": "FOMC Member Jefferson Speaks",
